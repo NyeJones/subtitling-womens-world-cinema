@@ -1,0 +1,303 @@
+/* ============================================================
+   Global Page Styles
+   ============================================================ */
+
+body {
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+  margin: 2rem !important;
+}
+
+/* Keep the main page heading visually separated from the content. */
+h1 {
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+}
+
+
+/* ============================================================
+   Links
+   ============================================================ */
+
+/* Use the site's dark red colour for links. */
+a {
+  color: rgba(133, 38, 59, 0.9) !important;
+  text-decoration: none !important;
+}
+
+/* Darken links slightly when the user hovers over them. */
+a:hover {
+  color: rgba(100, 0, 0, 1) !important; 
+}
+
+/* Add an external-link indicator to links within index entries. */
+.index-entry a::after {
+  content: ' ↗';
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+
+/* ----------------------------
+   Buttons
+---------------------------- */
+
+/* Give buttons a consistent clickable appearance. */
+button {
+  cursor: pointer;
+  padding: 0.3em 0.6em;
+}
+
+/* Give buttons a subtle hover background. */
+button:hover {
+  background-color: #eee;
+}
+
+/* Give submit buttons slightly stronger text emphasis. */
+button[type="submit"] {
+  font-weight: 500;
+}
+
+/* Use softer corners for small buttons. */
+.btn-sm {
+  border-radius: 0.5rem; /* softer corners for small buttons */
+}
+
+
+/* ============================================================
+   Alphabet Navigation
+   ============================================================ */
+
+/* Add spacing below the alphabet navigation. */
+.alphabet {
+  margin-bottom: 2rem;
+}
+
+/* Keep alphabet buttons compact and evenly sized. */
+.alphabet button {
+  min-width: 2.2rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+/* Highlight the currently selected letter. */
+.alphabet button.active-letter {
+  background-color: rgba(128, 0, 0, 0.1);
+  border-color: rgba(128, 0, 0, 1);
+  color: rgba(128, 0, 0, 1);
+  font-weight: 600;
+}
+
+/* Highlight the "All" button without adding a background. */
+.alphabet button.active-all {
+  border-color: rgba(128, 0, 0, 1);
+  color: rgba(128, 0, 0, 1);
+  font-weight: 600;
+}
+
+/* Prevent the "All" button from changing appearance while pressed. */
+.alphabet button.active-all:active {
+  background-color: inherit;  
+  color: inherit;            
+}
+
+/* Give alphabet buttons a subtle hover background. */
+.alphabet button:hover {
+  background-color: #e9ecef;
+}
+
+/* Style the standalone "Show all" control. */
+.show-all {
+  color: rgba(128, 0, 0, 1) !important;
+  border: 1.5px solid rgba(128, 0, 0, 1) !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 0.4rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em;
+}
+
+
+/* ============================================================
+   Index Header & Search
+   ============================================================ */
+
+/* Keep the index title and search control aligned horizontally. */
+.index-header {
+  display: flex;
+  justify-content: space-between; /* title left, search right */
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Style the main index heading. */
+.index-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+/* Limit the width of the search area. */
+.index-header .index-search {
+  max-width: 350px;
+  width: 100%;
+}
+
+/* Set a consistent width for the search form control. */
+.search-group .form-control {
+  border-radius: 0.2rem !important;
+  width: 250px !important; 
+}
+
+
+/* Style the index search input. */
+.index-header .index-search input {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+/* Give the search button a subtle hover background. */
+.search-button:hover {
+  background-color: #e9ecef !important; /* pale grey */
+}
+
+/* Style the search button to match the alphabet controls. */
+.search-button {
+  color: rgba(128, 0, 0, 1) !important;
+  border: 1.5px solid rgba(128, 0, 0, 1) !important;
+  background: transparent !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 0.4rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em;
+  margin-left: 0.5rem !important;
+}
+
+/* Give the clear button extra spacing on very narrow screens. */
+@media (max-width: 395px) {
+    .search-clear-btn {
+        margin-top: 6px;
+        margin-left: 0px !important;
+    }
+}
+
+
+/* ============================================================
+   Index Entries
+   ============================================================ */
+
+/* Add spacing inside each index entry. */
+.index-entry {
+  padding: 0.6rem 0.8rem;
+}
+
+/* Keep hash-linked entries clear of the fixed navigation bar. */
+.index-entry,
+.letter-entry {
+  scroll-margin-top: 140px;
+}
+
+
+/* ============================================================
+   Entry Headers
+   ============================================================ */
+
+/* Align the entry title and any accompanying controls. */
+.entry-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Give entry titles stronger visual emphasis. */
+.entry-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+
+/* ============================================================
+   Entry Blocks & Subheadings
+   ============================================================ */
+
+/* Add spacing around groups of related entry information. */
+.entry-block {
+  margin-top: 0.6rem;
+  padding-left: 0.5rem;
+}
+
+/* Use a smaller, secondary heading style within entry blocks. */
+.subheading {
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #444;
+  font-weight: 600;
+}
+
+/* Style item names as secondary information beneath a subheading. */
+.entry-block .item-name {
+  display: block;           
+  padding-left: 1rem;      
+  margin: 0.2rem 0;         
+  font-size: 0.95rem;       
+  color: #333;             
+  border-left: 2px solid #ddd;  
+  padding-left: 0.8rem;     
+}
+
+
+/* ============================================================
+   Entry Toggle
+   ============================================================ */
+
+/* Style the control used to expand and collapse entry details. */
+.toggle {
+  margin-left: 0.4rem;
+  background: none !important;
+  border: none;
+  font-size: 1.4rem;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+/* Keep entry details hidden until the entry is opened. */
+.item-details {
+  display: none;
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  color: #444;
+}
+
+/* Display details when the parent entry is open. */
+.index-entry.open .item-details {
+  display: block;
+}
+
+/* Rotate the toggle indicator when the entry is open. */
+.index-entry.open .toggle {
+  transform: rotate(90deg);
+}
+
+
+/* ============================================================
+   Hash Navigation
+   ============================================================ */
+
+/* Temporarily highlight an entry reached through a URL hash. */
+.hash-highlight {
+  background-color: rgba(255, 215, 0, 0.7);
+  border-radius: 8px;
+  transition: background-color 2s ease};
+
+/* Allow the highlight to fade back to the normal background. */
+.hash-highlight.fade {
+  background-color: transparent;
+}
+
