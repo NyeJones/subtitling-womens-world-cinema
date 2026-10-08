@@ -1,3 +1,4 @@
+```yaml
 name: Copy Film Indexes
 
 on:
@@ -18,81 +19,36 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      # 1. Checkout site branch
       - name: Checkout site branch
         uses: actions/checkout@v4
         with:
           ref: site
           fetch-depth: 0
 
-      # 2. Fetch generated branch
       - name: Fetch generated branch
-        run: |
-          git fetch origin generated
+        run: git fetch origin generated
 
-          echo "=== GENERATED BRANCH ==="
-          git log -1 --oneline origin/generated
-
-          echo
-          echo "=== GENERATED FILES ==="
-          git ls-tree -r --name-only origin/generated
-
-      # 3. Copy generated content
-      - name: Copy generated content
+      - name: Copy generated indexes
         run: |
           mkdir -p docs/indexes
 
-          # Remove old generated files, preserving .gitignore if present.
           find docs/indexes -type f ! -name ".gitignore" -delete
 
-          # Create temporary worktree from generated branch.
           git worktree add --detach gen origin/generated
 
-          echo "=== FILES IN GENERATED BRANCH ==="
-          find gen -type f -print
+          test -f gen/film_index.html
+          test -f gen/search_index.json
 
-          # Make sure expected files exist.
-          test -f gen/film_index.html || {
-            echo "ERROR: film_index.html was not found in generated branch"
-            exit 1
-          }
-
-          test -f gen/search_index.json || {
-            echo "ERROR: search_index.json was not found in generated branch"
-            exit 1
-          }
-
-          # Copy files, but never copy Git metadata.
           rsync -av --exclude='.git' gen/ docs/indexes/
 
-          # Remove temporary worktree.
           git worktree remove gen --force
 
-          echo
-          echo "=== FINAL INDEX FILES ==="
-          find docs/indexes -type f -print
-
-      # 4. Stage generated indexes
-      - name: Stage index files
-        run: |
-          git add -A docs/indexes
-
-          echo "=== GIT STATUS ==="
-          git status --short
-
-          echo
-          echo "=== STAGED FILES ==="
-          git diff --cached --name-status
-
-          echo
-          echo "=== STAGED DIFF STAT ==="
-          git diff --cached --stat
-
-      # 5. Commit and push changes
       - name: Commit and push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
+
+          git add -A docs/indexes
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
@@ -101,15 +57,4 @@ jobs:
 
           git commit -m "Auto-update film indexes"
           git push origin site
-
-      # 6. Verify site branch
-      - name: Verify site branch
-        run: |
-          git fetch origin site
-
-          echo "=== INDEX FILES ON SITE BRANCH ==="
-          git ls-tree -r --name-only origin/site docs/indexes
-
-          echo
-          echo "=== LATEST SITE COMMIT ==="
-          git log -1 --oneline origin/site
+```
