@@ -6,13 +6,15 @@ on:
     types:
       - completed
 
+  workflow_dispatch:
+
 permissions:
   contents: write
 
 jobs:
   copy-indexes:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       # 1. Checkout site branch
@@ -24,33 +26,121 @@ jobs:
 
       # 2. Fetch generated branch
       - name: Fetch generated branch
-        run: git fetch origin generated
+        run: |
+          git fetch origin generated
 
-      # 3. Copy generated content
+          echo "=== GENERATED BRANCH ==="
+          git log -1 --oneline origin/generated
+
+          echo
+          echo "=== GENERATED FILES ==="
+          git ls-tree -r --name-only origin/generated
+
+      # 3. Repair old docs/indexes gitlink/submodule
+      - name: Repair indexes directory
+        run: |
+          echo "=== CURRENT INDEXES GIT ENTRY ==="
+          git ls-files --stage docs/indexes || true
+
+          # If docs/indexes was previously created as a gitlink,
+          # remove that gitlink from the Git index.
+          git rm --cached -f docs/indexes 2>/dev/null || true
+
+          # Remove any nested Git repository left by the old workflow.
+          rm -rf docs/indexes/.git
+
+          # Remove stale submodule configuration if it exists.
+          if [ -f .gitmodules ]; then
+            git config -f .gitmodules --remove-section submodule.docs/indexes 2>/dev/null || true
+
+            if [ ! -s .gitmodules ]; then
+              rm -f .gitmodules
+            fi
+          fi
+
+          echo "=== INDEXES AFTER REPAIR ==="
+          git ls-files --stage docs/indexes || true
+
+      # 4. Copy generated content
       - name: Copy generated content
         run: |
           mkdir -p docs/indexes
 
+          # Remove old generated files, preserving .gitignore if present.
           find docs/indexes -type f ! -name ".gitignore" -delete
+
+          # Make absolutely sure there is no nested Git repository.
           rm -rf docs/indexes/.git
 
-          git worktree add gen origin/generated
+          # Create a worktree from the generated branch.
+          git worktree add --detach gen origin/generated
 
+          echo "=== FILES IN GENERATED BRANCH ==="
+          find gen -type f -print
+
+          # Make sure the expected files actually exist.
+          test -f gen/film_index.html || {
+            echo "ERROR: film_index.html was not found in generated branch"
+            exit 1
+          }
+
+          test -f gen/search_index.json || {
+            echo "ERROR: search_index.json was not found in generated branch"
+            exit 1
+          }
+
+          # Copy generated files but never copy the worktree's .git file.
           rsync -av --exclude='.git' gen/ docs/indexes/
 
+          # Remove the worktree properly.
+          git worktree remove gen --force
+
+          # Final safety check.
           rm -rf docs/indexes/.git
 
+          echo
           echo "=== FINAL INDEX FILES ==="
           find docs/indexes -type f -print
 
-          git worktree remove gen --force
+      # 5. Stage the generated indexes
+      - name: Stage index files
+        run: |
+          git add -A docs/indexes
 
-      # 4. Commit and push changes
+          echo "=== GIT STATUS ==="
+          git status --short
+
+          echo
+          echo "=== STAGED FILES ==="
+          git diff --cached --name-status
+
+          echo
+          echo "=== STAGED DIFF STAT ==="
+          git diff --cached --stat
+
+      # 6. Commit and push changes
       - name: Commit and push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add docs
-          git commit -m "Auto-update film indexes" || echo "No changes to commit"
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Auto-update film indexes"
+
           git push origin site
+
+      # 7. Verify files on site branch
+      - name: Verify site branch
+        run: |
+          git fetch origin site
+
+          echo "=== INDEX FILES ON SITE BRANCH ==="
+          git ls-tree -r --name-only origin/site docs/indexes
+
+          echo
+          echo "=== LATEST SITE COMMIT ==="
+          git log -1 --oneline origin/site
