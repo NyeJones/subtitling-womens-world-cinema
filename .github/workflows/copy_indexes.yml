@@ -27,23 +27,23 @@ jobs:
         run: git fetch origin generated
 
       # 3. Copy generated content
-    - name: Copy generated content
-      run: |
-        mkdir -p docs/indexes
+      - name: Copy generated content
+        run: |
+          mkdir -p docs/indexes
 
-        find docs/indexes -type f ! -name ".gitignore" -delete
-        rm -rf docs/indexes/.git
+          find docs/indexes -type f ! -name ".gitignore" -delete
+          rm -rf docs/indexes/.git
 
-        git worktree add gen origin/generated
+          git worktree add gen origin/generated
 
-        rsync -av --exclude='.git' gen/ docs/indexes/
+          rsync -av --exclude='.git' gen/ docs/indexes/
 
-        rm -rf docs/indexes/.git
+          rm -rf docs/indexes/.git
 
-        echo "=== FINAL INDEX FILES ==="
-        find docs/indexes -type f -print
+          echo "=== FINAL INDEX FILES ==="
+          find docs/indexes -type f -print
 
-        git worktree remove gen --force
+          git worktree remove gen --force
 
       # 4. Commit and push changes
       - name: Commit and push
