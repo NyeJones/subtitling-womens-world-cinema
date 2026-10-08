@@ -1,4 +1,3 @@
-```yaml
 name: Copy Film Indexes
 
 on:
@@ -57,4 +56,3 @@ jobs:
 
           git commit -m "Auto-update film indexes"
           git push origin site
-```
