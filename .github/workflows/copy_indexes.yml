@@ -14,6 +14,7 @@ permissions:
 jobs:
   copy-indexes:
     runs-on: ubuntu-latest
+
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
@@ -36,32 +37,7 @@ jobs:
           echo "=== GENERATED FILES ==="
           git ls-tree -r --name-only origin/generated
 
-      # 3. Repair old docs/indexes gitlink/submodule
-      - name: Repair indexes directory
-        run: |
-          echo "=== CURRENT INDEXES GIT ENTRY ==="
-          git ls-files --stage docs/indexes || true
-
-          # If docs/indexes was previously created as a gitlink,
-          # remove that gitlink from the Git index.
-          git rm --cached -f docs/indexes 2>/dev/null || true
-
-          # Remove any nested Git repository left by the old workflow.
-          rm -rf docs/indexes/.git
-
-          # Remove stale submodule configuration if it exists.
-          if [ -f .gitmodules ]; then
-            git config -f .gitmodules --remove-section submodule.docs/indexes 2>/dev/null || true
-
-            if [ ! -s .gitmodules ]; then
-              rm -f .gitmodules
-            fi
-          fi
-
-          echo "=== INDEXES AFTER REPAIR ==="
-          git ls-files --stage docs/indexes || true
-
-      # 4. Copy generated content
+      # 3. Copy generated content
       - name: Copy generated content
         run: |
           mkdir -p docs/indexes
@@ -69,16 +45,13 @@ jobs:
           # Remove old generated files, preserving .gitignore if present.
           find docs/indexes -type f ! -name ".gitignore" -delete
 
-          # Make absolutely sure there is no nested Git repository.
-          rm -rf docs/indexes/.git
-
-          # Create a worktree from the generated branch.
+          # Create temporary worktree from generated branch.
           git worktree add --detach gen origin/generated
 
           echo "=== FILES IN GENERATED BRANCH ==="
           find gen -type f -print
 
-          # Make sure the expected files actually exist.
+          # Make sure expected files exist.
           test -f gen/film_index.html || {
             echo "ERROR: film_index.html was not found in generated branch"
             exit 1
@@ -89,20 +62,17 @@ jobs:
             exit 1
           }
 
-          # Copy generated files but never copy the worktree's .git file.
+          # Copy files, but never copy Git metadata.
           rsync -av --exclude='.git' gen/ docs/indexes/
 
-          # Remove the worktree properly.
+          # Remove temporary worktree.
           git worktree remove gen --force
-
-          # Final safety check.
-          rm -rf docs/indexes/.git
 
           echo
           echo "=== FINAL INDEX FILES ==="
           find docs/indexes -type f -print
 
-      # 5. Stage the generated indexes
+      # 4. Stage generated indexes
       - name: Stage index files
         run: |
           git add -A docs/indexes
@@ -118,7 +88,7 @@ jobs:
           echo "=== STAGED DIFF STAT ==="
           git diff --cached --stat
 
-      # 6. Commit and push changes
+      # 5. Commit and push changes
       - name: Commit and push
         run: |
           git config user.name "github-actions"
@@ -130,10 +100,9 @@ jobs:
           fi
 
           git commit -m "Auto-update film indexes"
-
           git push origin site
 
-      # 7. Verify files on site branch
+      # 6. Verify site branch
       - name: Verify site branch
         run: |
           git fetch origin site
