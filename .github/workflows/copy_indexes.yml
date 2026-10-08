@@ -18,15 +18,18 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
 
     steps:
+      # 1. Checkout site branch (where the site lives)
       - name: Checkout site branch
         uses: actions/checkout@v4
         with:
           ref: site
           fetch-depth: 0
 
+      # 2. Fetch generated branch
       - name: Fetch generated branch
         run: git fetch origin generated
 
+      # 3. Copy indexes
       - name: Copy generated indexes
         run: |
           mkdir -p docs/indexes
@@ -42,6 +45,7 @@ jobs:
 
           git worktree remove gen --force
 
+      # 4. Commit and push changes
       - name: Commit and push
         run: |
           git config user.name "github-actions"
