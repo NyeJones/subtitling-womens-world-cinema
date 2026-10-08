@@ -24,18 +24,39 @@ jobs:
 
       # 2. Fetch generated branch
       - name: Fetch generated branch
-        run: git fetch origin generated
+        run: |
+          git fetch origin generated
+
+          echo "=== GENERATED BRANCH ==="
+          git log -1 --oneline origin/generated
+
+          echo
+          echo "=== FILES ON GENERATED BRANCH ==="
+          git ls-tree -r --name-only origin/generated
 
       # 3. Copy generated content
       - name: Copy generated content
         run: |
           mkdir -p docs/indexes
 
+          echo "=== INDEXES BEFORE COPY ==="
+          find docs/indexes -type f -print || true
+
           find docs/indexes -type f ! -name ".gitignore" -delete
 
           git worktree add gen origin/generated
 
+          echo
+          echo "=== FILES IN GEN ==="
+          find gen -type f -print
+
+          echo
+          echo "=== COPYING ==="
           rsync -av gen/ docs/indexes/
+
+          echo
+          echo "=== FILES IN DOCS/INDEXES AFTER COPY ==="
+          find docs/indexes -type f -print
 
           rm -rf gen
 
@@ -45,6 +66,19 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
+          echo "=== GIT STATUS ==="
+          git status --short
+
+          echo
+          echo "=== DOCS/INDEXES STATUS ==="
+          git status --short docs/indexes
+
           git add docs
+
+          echo
+          echo "=== STAGED CHANGES ==="
+          git diff --cached --stat
+          git diff --cached --name-only
+
           git commit -m "Auto-update film indexes" || echo "No changes to commit"
           git push origin site
