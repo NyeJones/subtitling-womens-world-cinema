@@ -27,18 +27,18 @@ jobs:
           python-version: '3.x'
 
       # 3. Install dependencies
-        - name: Install dependencies
-          run: |
-            pip install pandas numpy Unidecode
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy Unidecode
 
-        # 4. Build index
-        - name: Build index
-          run: python index_builder/build_index.py
+      # 4. Build index
+      - name: Build index
+        run: python index_builder/build_index.py
 
-        # 5. Deploy all outputs to generated branch
-        - name: Deploy to generated branch
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: ./index_builder/build
-            publish_branch: generated
+      # 5. Deploy all outputs to generated branch
+      - name: Deploy to generated branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./index_builder/build
+          publish_branch: generated
