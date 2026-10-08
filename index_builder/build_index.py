@@ -19,11 +19,17 @@ multi_fields = {
     "Language": "languages",
 }
 
-build_dir = "build"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+data_dir = os.path.join(base_dir, "..", "data")
+input_path = os.path.join(data_dir, "films.csv")
+
+build_dir = os.path.join(base_dir, "build")
 output_path = os.path.join(build_dir, f"film_index.html")
+
 os.makedirs(os.path.join(build_dir), exist_ok=True)
 
-df = pd.read_csv("../data/films.csv")
+df = pd.read_csv(input_path)
 df["Year"] = df["Year"].astype("Int64")
 
 df["Film ID"] = df["Film ID"].ffill()
