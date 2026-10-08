@@ -1,0 +1,44 @@
+name:  Build Film Indexes
+
+on:
+  push:
+    paths:
+      - 'data/**'
+      - 'index_builder/*.py'
+      - 'index_builder/static/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+  steps:
+    # 1. Checkout full history
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    # 2. Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    # 3. Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy Unidecode
+
+      # 4. Build index
+      - name: Build index
+        run: python index_builder/build_index.py
+
+      # 5. Deploy all outputs to generated branch
+      - name: Deploy to generated branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./index_builder/build
+          publish_branch: generated
