@@ -1,4 +1,4 @@
-name: Copy Film Indexes
+name: Copy Film Indexes and Map
 
 on:
   workflow_run:

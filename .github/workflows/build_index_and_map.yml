@@ -1,4 +1,4 @@
-name:  Build Film Indexes
+name:  Build Film Indexes and Map
 
 on:
   push:
