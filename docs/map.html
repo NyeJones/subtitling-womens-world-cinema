@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="static/css/map.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_75e4a9481ac4bdf9893bfc105af39734 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div id="film-search">
+    <input
+        id="film-search-input"
+        type="search"
+        placeholder="Search films, directors, locations..."
+    />
+    <div id="film-search-count"></div>
+</div>
+    <script src="static/js/map.js"></script>
+    
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                window.screeningMap = map_75e4a9481ac4bdf9893bfc105af39734;
+            });
+        </script>
+        
+    
+            <div class="folium-map" id="map_75e4a9481ac4bdf9893bfc105af39734" ></div>
+        
+</body>
+<script>
+    
+    window.screeningMap = map_75e4a9481ac4bdf9893bfc105af39734;
+    
+            var map_75e4a9481ac4bdf9893bfc105af39734 = L.map(
+                "map_75e4a9481ac4bdf9893bfc105af39734",
+                {
+                    center: [54.5, -3.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7e18faba44cb698a9ac7739432585d7e = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u00a9 Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_7e18faba44cb698a9ac7739432585d7e.addTo(map_75e4a9481ac4bdf9893bfc105af39734);
+        
+    
+            var circle_marker_5870172279eec07d67eea0aac43707f9 = L.circleMarker(
+                [50.7253549948146, -3.531422367306084],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "venueName": "Exeter Phoenix", "weight": 3}
+            ).addTo(map_75e4a9481ac4bdf9893bfc105af39734);
+        
+    
+        var popup_9b19f947af74571b83e73f36169c2307 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4a3b619cb98b0c027401a63e778e783e = $(`<div id="html_4a3b619cb98b0c027401a63e778e783e" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
+                popup_9b19f947af74571b83e73f36169c2307.setContent(html_4a3b619cb98b0c027401a63e778e783e);
+            
+        
+
+        circle_marker_5870172279eec07d67eea0aac43707f9.bindPopup(popup_9b19f947af74571b83e73f36169c2307)
+        ;
+
+        
+    
+    
+            circle_marker_5870172279eec07d67eea0aac43707f9.bindTooltip(
+                `<div>
+                     Exeter Phoenix
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f092b6ab71ed74afed1d0da03c1d5b9 = L.circleMarker(
+                [51.494770494338375, -0.17726822599467632],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "venueName": "Institut Fran\u00e7ais", "weight": 3}
+            ).addTo(map_75e4a9481ac4bdf9893bfc105af39734);
+        
+    
+        var popup_974aa54c79f422126d5d6c6faccb1108 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_985357014620151f7b5174121e34efc0 = $(`<div id="html_985357014620151f7b5174121e34efc0" style="width: 100.0%; height: 100.0%;"><b>Institut Français</b><br>1 screenings</div>`)[0];
+                popup_974aa54c79f422126d5d6c6faccb1108.setContent(html_985357014620151f7b5174121e34efc0);
+            
+        
+
+        circle_marker_1f092b6ab71ed74afed1d0da03c1d5b9.bindPopup(popup_974aa54c79f422126d5d6c6faccb1108)
+        ;
+
+        
+    
+    
+            circle_marker_1f092b6ab71ed74afed1d0da03c1d5b9.bindTooltip(
+                `<div>
+                     Institut Français
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
