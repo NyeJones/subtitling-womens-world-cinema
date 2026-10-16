@@ -44,8 +44,8 @@ jobs:
       # 6. Merge map into index build folder
       - name: Merge map into build folder
         run: |
-          mkdir -p tei_index_build/build/map
-          cp map_builder/map.html index_builder/build/map/ 
+          mkdir -p index_builder/build/map
+          cp map_builder/map.html index_builder/build/map/
 
       # 7. Deploy all outputs to generated branch
       - name: Deploy to generated branch
