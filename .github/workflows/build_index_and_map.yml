@@ -31,7 +31,7 @@ jobs:
       # 3. Install dependencies
       - name: Install dependencies
         run: |
-          pip install pandas numpy Unidecode
+          pip install pandas numpy Unidecode folium
 
       # 4. Build index
       - name: Build index
