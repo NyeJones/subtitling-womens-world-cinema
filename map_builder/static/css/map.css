@@ -1,0 +1,49 @@
+
+#film-search {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    left: auto;
+    z-index: 1000;
+    width: 300px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(128, 0, 0, 0.18);
+    box-sizing: border-box;
+}
+
+#film-search-input {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #800000;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #800000;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#film-search-input:focus {
+    box-shadow: 0 2px 6px rgba(40, 40, 40, 0.5);
+}
+
+#film-search-input::placeholder {
+    color: #888888;
+}
+
+#film-search-count {
+    margin-top: 8px;
+    color: #800000;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
+
+path.leaflet-interactive {
+outline: none;
+}
+
