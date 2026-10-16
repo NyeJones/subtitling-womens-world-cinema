@@ -97,6 +97,80 @@ def render_entry_header(identifier, title):
 
     return "\n".join(html)
 
+def screenings_processed(screenings_data):
+    
+    html = ["<div class='screenings-details'>"]
+
+    for screening in screenings_data:
+
+        html.append("<div class='screening-row'>")
+
+        screen_id = screening["screen_id"]
+
+        html.append("<div class='entry-block screening-item'>")
+        html.append("<span class='subheading'>Screening ID</span>")
+        html.append(f"<span class='item-name'>{esc(screen_id)}</span>")
+        html.append("</div>")
+
+        venue = screening["venue"]
+
+        html.append("<div class='entry-block entry-venue'>")
+        html.append("<span class='subheading'>Venue</span>")
+        html.append(f"<span class='item-name'>{esc(venue)}</span>")
+        html.append("</div>")
+
+        location = screening["location"]
+
+        html.append("<div class='entry-block entry-location'>")
+        html.append("<span class='subheading'>Location</span>")
+        html.append(f"<span class='item-name'>{esc(location)}</span>")
+        html.append("</div>")
+
+        month = screening["month"]
+
+        html.append("<div class='entry-block entry-month'>")
+        html.append("<span class='subheading'>Month</span>")
+        html.append(f"<span class='item-name'>{esc(month)}</span>")
+        html.append("</div>")
+
+        screen_type = screening["screen_type"]
+
+        html.append("<div class='entry-block entry-type'>")
+        html.append("<span class='subheading'>Screening Type</span>")
+        html.append(f"<span class='item-name'>{esc(screen_type)}</span>")
+        html.append("</div>")
+
+        html.append("</div>")
+
+    html.append("</div>")
+
+    return "\n".join(html)
+
+
+def render_screenings(screenings_data):
+
+    count = len(screenings_data)
+    screenings_items = screenings_processed(screenings_data)
+
+    html = ["<div class='entry-block entry-screenings'>"]
+    
+    if count == 0:
+        html.append("<span class='subheading'>Screenings</span>")
+        html.append("<span class='item-name'>0</span>")
+    else:
+        html.append("<div class='screenings'>")
+        html.append("<span class='subheading'>Screenings</span>")
+        html.append(f"<span class='screenings-count'>{esc(count)}</span>")
+        html.append(
+            "<button class='toggle' aria-label='Show details'>▸</button>"
+        )
+        html.append("</div>")
+        html.append(screenings_items)
+
+    html.append("</div>")
+
+    return "\n".join(html)
+
 def make_entity_url(entity_type, key, single_page=True):
     """
     Build an internal URL for an entity index entry.
@@ -124,7 +198,7 @@ def html_renderer(item_data):
     identifier = item_data.get("film_id")
     title = item_data.get("film_title")
 
-    html.append(f"<div class='index-entry' id='{esc(item_data)}'>")
+    html.append(f"<div class='index-entry' id='{esc(identifier)}'>")
     
     #render the standard entry heading and details container
     html.append(render_entry_header(identifier, title))
@@ -185,6 +259,11 @@ def html_renderer(item_data):
         html.append(f"<span class='item-name'>{esc(subtitles)}</span>")
         html.append("</div>")
 
+    screenings_html = render_screenings(item_data.get("screenings"))
+
+    if screenings_html:
+        html.append(screenings_html)
+
     html.append("</div>")
     return "\n".join(html)
 
@@ -241,7 +320,7 @@ def render_page(title, body_html):
         f"  <title>{esc(title)}</title>",
 
         #load the index-specific stylesheet and Bootstrap
-        "  <link rel='stylesheet' href='../static/css/index.css'>",
+        "  <link rel='stylesheet' href='static/css/index.css'>",
         "   <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65' crossorigin='anonymous'>",
         "</head>",
         "<body>",
@@ -271,7 +350,7 @@ def render_page(title, body_html):
         #load Bootstrap's JavaScript bundle followed by the custom
         #index JavaScript responsible for search and filtering behaviour
         "  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4' crossorigin='anonymous'></script>",
-        "  <script src='../static/js/index.js'></script>",
+        "  <script src='static/js/index.js'></script>",
         "</body>",
         "</html>",
     ]

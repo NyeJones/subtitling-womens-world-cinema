@@ -19,7 +19,7 @@ def normalize_for_sort(text):
         return ""
     return unidecode(text).lower()
 
-def group_items_alphabetically(items):
+def group_items_alphabetically(film_data):
     """
     Group entity items alphabetically by their preferred name.
 
@@ -40,8 +40,10 @@ def group_items_alphabetically(items):
     grouped = defaultdict(list)
 
     #determine the grouping letter for each item from its preferred name
-    for item in items:
-        name_list = item.get("film_title")
+    for film_id, item_data in film_data.items():
+        name_list = item_data.get("film_title")
+
+        item_data["film_id"] = film_id
 
         if name_list:
             name = name_list[0]
@@ -53,7 +55,7 @@ def group_items_alphabetically(items):
             #items without a preferred name are grouped under "#"
             first_letter = "#"
 
-        grouped[first_letter].append(item)
+        grouped[first_letter].append(item_data)
 
     #sort items within each alphabetical group using normalized names
     for letter in grouped:
@@ -64,15 +66,11 @@ def group_items_alphabetically(items):
     #sort the grouping letters themselves before returning the dictionary
     return dict(sorted(grouped.items()))
 
-def build_search_index(items, build_dir):
+def build_search_index(film_data, build_dir):
     
     records = []
 
-    for item_data in items:
-
-        identifier = item_data.get("film_id")
-        if not identifier:
-            continue 
+    for film_id, item_data in film_data.items():
 
         title = item_data.get("film_title")
 
@@ -80,10 +78,10 @@ def build_search_index(items, build_dir):
 
         #create the fields common to every search record
         record = {
-            "id": identifier,
+            "id": film_id,
             "title": title,
             "directors": directors,
-            "url": f"indexes/film_index.html#{identifier}"
+            "url": f"indexes/film_index.html#{film_id}"
         }
 
         records.append(record)

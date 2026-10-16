@@ -22,25 +22,31 @@ multi_fields = {
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 data_dir = os.path.join(base_dir, "..", "data")
-input_path = os.path.join(data_dir, "films.csv")
-
 build_dir = os.path.join(base_dir, "build")
+
+films_input_path = os.path.join(data_dir, "films.csv")
+screens_input_path = os.path.join(data_dir, "screenings.csv")
+
 output_path = os.path.join(build_dir, f"film_index.html")
 
 os.makedirs(os.path.join(build_dir), exist_ok=True)
 
-df = pd.read_csv(input_path)
-df["Year"] = df["Year"].astype("Int64")
+films_df = pd.read_csv(films_input_path)
+films_df["Year"] = films_df["Year"].astype("Int64")
+films_df["Film ID"] = films_df["Film ID"].ffill()
 
-df["Film ID"] = df["Film ID"].ffill()
+screens_df = pd.read_csv(screens_input_path)
+screens_df["Month"] = pd.to_datetime(
+    screens_df["Month"],
+    dayfirst=True,
+    errors="coerce"
+)
 
-films = []
+films = {}
 
-for film_id, group in df.groupby("Film ID", sort=False):
+for film_id, group in films_df.groupby("Film ID", sort=False):
 
-    film = {}
-
-    film["film_id"] = film_id 
+    film = {"screenings": []}
 
     for column, json_name in single_fields.items():
         values = group[column].dropna()
@@ -52,7 +58,26 @@ for film_id, group in df.groupby("Film ID", sort=False):
         values = group[column].dropna().unique().tolist()
         film[json_name] = values
 
-    films.append(film)
+    films[film_id] = film
+
+for film_id, group in screens_df.groupby("Film ID"):
+
+    if film_id not in films:
+        print(f"Warning: screening references unknown Film ID: {film_id}")
+        continue
+
+    for _, row in group.iterrows():
+        screening = {
+            "screen_id": row["Screening ID"],
+            "venue": row["Venue"],
+            "location": row["Location"],
+            "month": row["Month"].strftime("%m/%Y")
+                     if pd.notna(row["Month"]) else "",
+            "screen_type": row["Screening Type"],
+        }
+
+        films[film_id]["screenings"].append(screening)
+
 
 films_alpha = group_items_alphabetically(films)
 
@@ -69,6 +94,5 @@ with open(output_path, "w", encoding="utf-8") as f:
 
 #build the JSON search index
 build_search_index(films, build_dir)
-
 
 

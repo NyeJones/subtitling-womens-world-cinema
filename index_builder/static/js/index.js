@@ -395,3 +395,24 @@ document.addEventListener('click', function (e) {
 });
 
 
+// ============================================================
+// Screening click handler
+// ============================================================
+
+// Toggle the screening details when a screenings header is clicked.
+document.addEventListener("click", function (e) {
+
+  const header = e.target.closest(".screenings");
+  if (!header) return;
+
+  const screenings = header.nextElementSibling;
+  if (!screenings) return;
+
+  // Toggle the open state on the header.
+  const isOpen = header.classList.toggle("open");
+
+  // Show or hide the screening details.
+  screenings.classList.toggle("open", isOpen);
+
+});
+
