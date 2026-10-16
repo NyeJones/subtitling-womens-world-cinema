@@ -6,6 +6,8 @@ on:
       - 'data/**'
       - 'index_builder/*.py'
       - 'index_builder/static/**'
+      - 'map_builder/*.py'
+      - 'map_builder/static/**'
 
 permissions:
   contents: write
@@ -35,7 +37,17 @@ jobs:
       - name: Build index
         run: python index_builder/build_index.py
 
-      # 5. Deploy all outputs to generated branch
+      # 5. Build map
+      - name: Build map
+        run: python map_builder/build_map.py
+
+      # 6. Merge map into index build folder
+      - name: Merge map into build folder
+        run: |
+          mkdir -p tei_index_build/build/map
+          cp map_builder/map.html index_builder/build/map/ 
+
+      # 7. Deploy all outputs to generated branch
       - name: Deploy to generated branch
         uses: peaceiris/actions-gh-pages@v3
         with:

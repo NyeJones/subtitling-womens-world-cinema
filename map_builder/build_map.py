@@ -13,7 +13,7 @@ films_input_path = os.path.join(data_dir, "films.csv")
 screens_input_path = os.path.join(data_dir, "screenings.csv")
 search_data_path = os.path.join(base_dir, "search_data.json")
 
-output_path = os.path.join(base_dir, "uk_screenings.html")
+output_path = os.path.join(base_dir, "map.html")
 
 films_df = pd.read_csv(films_input_path)
 films_df["Year"] = films_df["Year"].astype("Int64")

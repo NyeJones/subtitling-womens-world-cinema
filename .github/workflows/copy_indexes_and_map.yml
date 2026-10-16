@@ -2,7 +2,7 @@ name: Copy Film Indexes
 
 on:
   workflow_run:
-    workflows: ["Build Film Indexes"]
+    workflows: ["Build Film Indexes and map"]
     types:
       - completed
 
@@ -38,10 +38,9 @@ jobs:
 
           git worktree add --detach gen origin/generated
 
-          test -f gen/film_index.html
-          test -f gen/search_index.json
+          rsync -av --exclude='.git' --exclude='map/' gen/ docs/indexes/
 
-          rsync -av --exclude='.git' gen/ docs/indexes/
+          cp gen/map/map.html docs/map.html
 
           git worktree remove gen --force
 
@@ -58,5 +57,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Auto-update film indexes"
+          git commit -m "Auto-update film indexes and map"
           git push origin site
