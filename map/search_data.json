@@ -1,0 +1,34 @@
+[
+  {
+    "Venue": "Exeter Phoenix",
+    "location": "Exeter",
+    "Latitude": 50.7253549948146,
+    "Longitude": -3.531422367306084,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0001"
+    ],
+    "film_titles": [
+      "El mundo sigue"
+    ],
+    "directors": [
+      "Fernando Fernán-Gómez"
+    ]
+  },
+  {
+    "Venue": "Institut Français",
+    "location": "London",
+    "Latitude": 51.494770494338375,
+    "Longitude": -0.17726822599467632,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0001"
+    ],
+    "film_titles": [
+      "El mundo sigue"
+    ],
+    "directors": [
+      "Fernando Fernán-Gómez"
+    ]
+  }
+]
