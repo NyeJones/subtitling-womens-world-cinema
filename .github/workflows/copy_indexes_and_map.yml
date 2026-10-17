@@ -41,6 +41,7 @@ jobs:
           rsync -av --exclude='.git' --exclude='map/' gen/ docs/indexes/
 
           cp gen/map/map.html docs/map.html
+          cp gen/map/search_data.json docs/search_data.json
 
           git worktree remove gen --force
 
