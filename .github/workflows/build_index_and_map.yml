@@ -46,6 +46,7 @@ jobs:
         run: |
           mkdir -p index_builder/build/map
           cp map_builder/map.html index_builder/build/map/
+          cp map_builder/search_data.json index_builder/build/map/
 
       # 7. Deploy all outputs to generated branch
       - name: Deploy to generated branch
