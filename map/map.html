@@ -18,7 +18,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_7802cbd140560b2fb5ed94a40dc7f281 {
+                #map_6165ee62f44967bb08933d07d12c7e1a {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -56,31 +56,41 @@
     
     
 <div id="film-search">
+    <select id="film-search-type" aria-label="Search category">
+        <option value="location" selected>Location</option>
+        <option value="venue">Venue</option>
+        <option value="film">Film</option>
+        <option value="director">Director</option>
+    </select>
+
     <input
         id="film-search-input"
         type="search"
-        placeholder="Search films, directors, locations..."
+        placeholder="Search locations..."
+        autocomplete="off"
     />
+
+    <div id="film-search-suggestions"></div>
     <div id="film-search-count"></div>
 </div>
     <script src="static/js/map.js"></script>
     
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                window.screeningMap = map_7802cbd140560b2fb5ed94a40dc7f281;
+                window.screeningMap = map_6165ee62f44967bb08933d07d12c7e1a;
             });
         </script>
         
     
-            <div class="folium-map" id="map_7802cbd140560b2fb5ed94a40dc7f281" ></div>
+            <div class="folium-map" id="map_6165ee62f44967bb08933d07d12c7e1a" ></div>
         
 </body>
 <script>
     
-    window.screeningMap = map_7802cbd140560b2fb5ed94a40dc7f281;
+    window.screeningMap = map_6165ee62f44967bb08933d07d12c7e1a;
     
-            var map_7802cbd140560b2fb5ed94a40dc7f281 = L.map(
-                "map_7802cbd140560b2fb5ed94a40dc7f281",
+            var map_6165ee62f44967bb08933d07d12c7e1a = L.map(
+                "map_6165ee62f44967bb08933d07d12c7e1a",
                 {
                     center: [54.5, -3.0],
                     crs: L.CRS.EPSG3857,
@@ -97,7 +107,7 @@
 
         
     
-            var tile_layer_a0e70092143913292b54a95a1ba15c6c = L.tileLayer(
+            var tile_layer_3fece0e9969e79b49b5f70d8755afaa0 = L.tileLayer(
                 "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -114,33 +124,33 @@
             );
         
     
-            tile_layer_a0e70092143913292b54a95a1ba15c6c.addTo(map_7802cbd140560b2fb5ed94a40dc7f281);
+            tile_layer_3fece0e9969e79b49b5f70d8755afaa0.addTo(map_6165ee62f44967bb08933d07d12c7e1a);
         
     
-            var circle_marker_6f6fb21dac4602a8fabe2136cf1c62f2 = L.circleMarker(
+            var circle_marker_d3d536d660bbb47a31b88e2733473bde = L.circleMarker(
                 [50.7253549948146, -3.531422367306084],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "venueName": "Exeter Phoenix", "weight": 3}
-            ).addTo(map_7802cbd140560b2fb5ed94a40dc7f281);
+            ).addTo(map_6165ee62f44967bb08933d07d12c7e1a);
         
     
-        var popup_57172c6539bdae14c6226ee20d247106 = L.popup({
+        var popup_5b993231f909667d99038a9b29468cb8 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_8c5e775d2992e1787e79706c64743eee = $(`<div id="html_8c5e775d2992e1787e79706c64743eee" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
-                popup_57172c6539bdae14c6226ee20d247106.setContent(html_8c5e775d2992e1787e79706c64743eee);
+                var html_4108f0358ddebdfc43624bebfe4e8f01 = $(`<div id="html_4108f0358ddebdfc43624bebfe4e8f01" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
+                popup_5b993231f909667d99038a9b29468cb8.setContent(html_4108f0358ddebdfc43624bebfe4e8f01);
             
         
 
-        circle_marker_6f6fb21dac4602a8fabe2136cf1c62f2.bindPopup(popup_57172c6539bdae14c6226ee20d247106)
+        circle_marker_d3d536d660bbb47a31b88e2733473bde.bindPopup(popup_5b993231f909667d99038a9b29468cb8)
         ;
 
         
     
     
-            circle_marker_6f6fb21dac4602a8fabe2136cf1c62f2.bindTooltip(
+            circle_marker_d3d536d660bbb47a31b88e2733473bde.bindTooltip(
                 `<div>
                      Exeter Phoenix
                  </div>`,
@@ -150,30 +160,30 @@
             );
         
     
-            var circle_marker_cd34fd28ed792228760a113105a211c7 = L.circleMarker(
+            var circle_marker_1cff9b575f6bb9d9551e02a9f73f82e1 = L.circleMarker(
                 [51.494770494338375, -0.17726822599467632],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "stroke": true, "venueName": "Institut Fran\u00e7ais", "weight": 3}
-            ).addTo(map_7802cbd140560b2fb5ed94a40dc7f281);
+            ).addTo(map_6165ee62f44967bb08933d07d12c7e1a);
         
     
-        var popup_4abf5868b0c73d127d0bc16cec413c45 = L.popup({
+        var popup_be6cb08d62d8310977848654aa64bb03 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_f6c50e4ba62a7ea9a42fa46e309537b6 = $(`<div id="html_f6c50e4ba62a7ea9a42fa46e309537b6" style="width: 100.0%; height: 100.0%;"><b>Institut Français</b><br>1 screenings</div>`)[0];
-                popup_4abf5868b0c73d127d0bc16cec413c45.setContent(html_f6c50e4ba62a7ea9a42fa46e309537b6);
+                var html_28dd8073888ee0fcaff6f8f17f716a4a = $(`<div id="html_28dd8073888ee0fcaff6f8f17f716a4a" style="width: 100.0%; height: 100.0%;"><b>Institut Français</b><br>1 screenings</div>`)[0];
+                popup_be6cb08d62d8310977848654aa64bb03.setContent(html_28dd8073888ee0fcaff6f8f17f716a4a);
             
         
 
-        circle_marker_cd34fd28ed792228760a113105a211c7.bindPopup(popup_4abf5868b0c73d127d0bc16cec413c45)
+        circle_marker_1cff9b575f6bb9d9551e02a9f73f82e1.bindPopup(popup_be6cb08d62d8310977848654aa64bb03)
         ;
 
         
     
     
-            circle_marker_cd34fd28ed792228760a113105a211c7.bindTooltip(
+            circle_marker_1cff9b575f6bb9d9551e02a9f73f82e1.bindTooltip(
                 `<div>
                      Institut Français
                  </div>`,
