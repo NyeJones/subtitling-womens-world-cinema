@@ -37,82 +37,162 @@ loadSearchData().then(data => {
 
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("film-search-input");
+    const searchType = document.getElementById("film-search-type");
+    const suggestionsBox = document.getElementById("film-search-suggestions");
     const searchCount = document.getElementById("film-search-count");
 
-    if (!searchInput) {
-        console.error("Search input not found.");
+    if (!searchInput || !searchType || !suggestionsBox) {
+        console.error("Search controls not found.");
         return;
     }
 
-    searchInput.addEventListener("input", function () {
-        const query = searchInput.value.trim().toLowerCase();
-        const data = window.screeningSearchData || [];
+    const fields = {
+        location: item => [item.location],
+        venue: item => [item.Venue],
+        film: item => item.film_titles || [],
+        director: item => item.directors || []
+    };
 
-        // Find locations matching the search query.
-        const matches = data.filter(item => {
-            const searchableText = [
-                item.Venue,
-                ...(item.film_titles || []),
-                ...(item.directors || []),
-                item.location,
-            ]
-                .filter(Boolean)
-                .join(" ")
-                .toLowerCase();
+    function normalizeText(value) {
+        return String(value)
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase();
+    }
 
-            return searchableText.includes(query);
+    function getData() {
+        return window.screeningSearchData || [];
+    }
+
+    function getMatches(query) {
+        const field = fields[searchType.value];
+        const normalizedQuery = normalizeText(query);
+
+        return getData().filter(item => {
+            const values = field(item).filter(Boolean);
+
+            return !normalizedQuery || values.some(value =>
+                normalizeText(value).includes(normalizedQuery)
+            );
         });
+    }
 
-        // Update the number of matching locations.
+    function runSearch(value = searchInput.value) {
+        const query = value.trim().toLowerCase();
+        const matches = getMatches(query);
+
         if (searchCount) {
             searchCount.textContent = query
                 ? `${matches.length} matching venues`
-                : `${data.length} venues`;
+                : `${getData().length} venues`;
         }
 
-        // Create a set of matching venue names.
         const matchingVenues = new Set(
             matches.map(item =>
                 String(item.Venue).trim().toLowerCase()
             )
         );
 
-        // Highlight matching markers and fade the others.
         if (window.screeningMap && window.L) {
             window.screeningMap.eachLayer(function (layer) {
-                if (
-                    layer instanceof L.CircleMarker &&
-                    layer.options.venueName
-                ) {
-                    const location = String(
-                        layer.options.venueName
-                    ).trim().toLowerCase();
+                if (!(layer instanceof L.CircleMarker)) return;
 
-                    const isMatch =
-                        query === "" ||
-                        matchingVenues.has(location);
+                const venue = String(layer.options.venueName || "")
+                    .trim()
+                    .toLowerCase();
 
-                    layer.setStyle({
-                        opacity: isMatch ? 1 : 0.15,
-                        fillOpacity: isMatch ? 0.7 : 0.05
-                    });
-                }
+                const isMatch = !query || matchingVenues.has(venue);
+
+                layer.setStyle({
+                    opacity: isMatch ? 1 : 0.15,
+                    fillOpacity: isMatch ? 0.7 : 0.05
+                });
             });
         }
+    }
 
-        console.log("Matching venues:", matches);
-        console.log("Map available:", !!window.screeningMap);
-        console.log("Matching venues:", matches.length);
+    function renderSuggestions(query) {
+        suggestionsBox.replaceChildren();
 
-        if (window.screeningMap) {
-            window.screeningMap.eachLayer(function (layer) {
-                if (layer instanceof L.CircleMarker) {
-                    console.log(
-                        "Marker found:",
-                        layer.options.venueName
-            );
+        if (query.length < 2) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
+
+        const field = fields[searchType.value];
+        const seen = new Set();
+        const suggestions = [];
+
+        getData().forEach(item => {
+            field(item).filter(Boolean).forEach(value => {
+                const label = String(value).trim();
+                const key = normalizeText(label);
+
+                if (
+                    normalizeText(label).includes(normalizeText(query)) &&
+                    !seen.has(key)
+                ) {
+                    seen.add(key);
+                    suggestions.push(label);
+                }
+            });
+        });
+
+        suggestionsBox.style.display = "block";
+
+        if (suggestions.length === 0) {
+            const empty = document.createElement("div");
+            empty.textContent = "No matching suggestions";
+            empty.className = "search-suggestion";
+            suggestionsBox.appendChild(empty);
+            return;
+        }
+
+        suggestions.slice(0, 8).forEach(label => {
+            const option = document.createElement("button");
+            option.type = "button";
+            option.className = "search-suggestion";
+            option.textContent = label;
+
+            option.addEventListener("click", function () {
+                searchInput.value = label;
+                suggestionsBox.style.display = "none";
+                runSearch(label);
+            });
+
+            suggestionsBox.appendChild(option);
+        });
+    }
+
+    searchInput.addEventListener("input", function () {
+        renderSuggestions(searchInput.value.trim());
+        runSearch();
+    });
+
+    searchType.addEventListener("change", function () {
+        const placeholders = {
+            location: "Search locations...",
+            venue: "Search venues...",
+            film: "Search films...",
+            director: "Search directors..."
+        };
+
+        searchInput.placeholder = placeholders[searchType.value];
+        suggestionsBox.style.display = "none";
+
+        renderSuggestions(searchInput.value.trim());
+        runSearch();
+    });
+
+    document.addEventListener("click", function (event) {
+        if (
+            !suggestionsBox.contains(event.target) &&
+            event.target !== searchInput
+        ) {
+            suggestionsBox.style.display = "none";
         }
     });
-}
-    });
+
+    runSearch();
 });
+

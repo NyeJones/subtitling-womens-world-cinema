@@ -124,11 +124,21 @@ for _, row in venue_summary_df.iterrows():
 
 m.get_root().html.add_child(Element("""
 <div id="film-search">
+    <select id="film-search-type" aria-label="Search category">
+        <option value="location" selected>Location</option>
+        <option value="venue">Venue</option>
+        <option value="film">Film</option>
+        <option value="director">Director</option>
+    </select>
+
     <input
         id="film-search-input"
         type="search"
-        placeholder="Search films, directors, locations..."
+        placeholder="Search locations..."
+        autocomplete="off"
     />
+
+    <div id="film-search-suggestions"></div>
     <div id="film-search-count"></div>
 </div>
 """))
