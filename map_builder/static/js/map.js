@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (suggestions.length === 0) {
             const empty = document.createElement("div");
             empty.textContent = "No matching suggestions";
-            empty.className = "search-suggestion";
+            empty.className = "search-suggestion-empty";
             suggestionsBox.appendChild(empty);
             return;
         }
