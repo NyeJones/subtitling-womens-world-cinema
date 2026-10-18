@@ -28,6 +28,11 @@
     outline: none;
 }
 
+#film-search-input::spelling-error,
+#film-search-input::grammar-error {
+    text-decoration: none;
+}
+
 #film-search-type {
     display: block;
     width: 100%;
@@ -79,8 +84,8 @@
 
 .search-suggestion-empty {
     padding: 9px 10px;
-    color: #666666;
     font-size: 13px;
+    color: rgba(128, 0, 0, 1);
 }
 
 
