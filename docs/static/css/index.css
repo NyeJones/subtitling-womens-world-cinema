@@ -281,8 +281,120 @@ button[type="submit"] {
 }
 
 /* Rotate the toggle indicator when the entry is open. */
-.index-entry.open .toggle {
+.index-entry.open > .entry-header .toggle {
   transform: rotate(90deg);
+}
+
+/* ============================================================
+   Screenings Toggle
+   ============================================================ */
+
+/* Style the screenings header toggle. */
+.screenings .toggle {
+  margin-left: 0.4rem;
+  padding-left: 1rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 0;
+  background: none !important;
+  border: none;
+  font-size: 1.4rem;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+/* Keep screenings details hidden until opened. */
+.screenings-details {
+  display: none;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.7rem;
+  padding: 0.75rem 1rem;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Display details when opened. */
+.screenings-details.open {
+  display: flex;
+}
+
+.screenings-details .entry-block {
+  margin: 0;
+}
+
+/* Each screening is a horizontal row. */
+.screening-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Remove the divider from the final screening. */
+.screening-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Stack each entry's label above its value. */
+.screening-row .entry-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Style entry labels. */
+.screening-row .subheading {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Style entry values. */
+.screening-row .item-name {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Style screening counts, if used elsewhere. */
+.entry-block .screenings-count {
+  display: inline-block;
+  padding: 0.1rem 0 0.1rem 0.8rem;
+  font-size: 0.95rem;
+  color: #333;
+  border-left: 2px solid #ddd;
+}
+
+/* Rotate only the screenings toggle when its own header is open. */
+.screenings.open .toggle {
+  transform: rotate(90deg);
+}
+
+/* Tablet: 3 columns */
+@media (max-width: 900px) {
+  .screening-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 600px) {
+  .screening-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
 }
 
 
