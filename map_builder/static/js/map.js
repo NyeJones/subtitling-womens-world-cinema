@@ -27,13 +27,30 @@ async function loadSearchData() {
     }
 }
 
-loadSearchData().then(data => {
-    // Make the data available to the existing search interface.
-    window.screeningSearchData = data;
+async function loadScreeningData() {
+    try {
+        const response = await fetch("./screening_data.json");
 
-    console.log("Search data:", data);
-    console.log(`Loaded ${data.length} searchable venues.`);
-});
+        if (!response.ok) {
+            throw new Error("Failed to load screening_data.json");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Could not load screening data:", error);
+        return [];
+    }
+}
+
+Promise.all([loadSearchData(), loadScreeningData()]).then(
+    ([venueData, screeningData]) => {
+        window.screeningSearchData = venueData;
+        window.screeningData = screeningData;
+
+        console.log(`Loaded ${venueData.length} searchable venues.`);
+        console.log(`Loaded ${screeningData.length} screening records.`);
+    }
+);
 
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("film-search-input");
@@ -58,6 +75,37 @@ document.addEventListener("DOMContentLoaded", function () {
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .toLowerCase();
+    }
+
+    function getFilteredScreeningCount(venueName) {
+        const category = document.getElementById("film-search-type").value;
+        const query = normalizeText(
+            document.getElementById("film-search-input").value.trim()
+        );
+
+        const venue = normalizeText(venueName);
+
+        // Location and venue searches keep the original total count.
+        if (!query || category === "location" || category === "venue") {
+            const venueRecord = (window.screeningSearchData || []).find(
+                item => normalizeText(item.Venue) === venue
+            );
+
+            return venueRecord ? venueRecord.screening_count : 0;
+        }
+
+        // Film and director searches count individual matching screenings.
+        return (window.screeningData || []).filter(item => {
+            if (normalizeText(item.Venue) !== venue) return false;
+
+            const field = category === "film" ? item["Film Title"] : item.Director;
+
+            const values = Array.isArray(field) ? field : [field];
+
+            return values.some(value =>
+                normalizeText(value).includes(query)
+            );
+        }).length;
     }
 
     function getData() {
@@ -93,6 +141,18 @@ document.addEventListener("DOMContentLoaded", function () {
             )
         );
 
+        const matchingCounts = new Map();
+
+        matches.forEach(item => {
+            const venue = String(item.Venue).trim().toLowerCase();
+            const count = item.screening_count || 0;
+
+            matchingCounts.set(
+                venue,
+                query ? count : (matchingCounts.get(venue) || 0) + count
+            );
+        });
+
         if (window.screeningMap && window.L) {
             window.screeningMap.eachLayer(function (layer) {
                 if (!(layer instanceof L.CircleMarker)) return;
@@ -103,10 +163,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const isMatch = !query || matchingVenues.has(venue);
 
+                const filteredCount = getFilteredScreeningCount(venue);
+
                 layer.setStyle({
                     opacity: isMatch ? 1 : 0.15,
                     fillOpacity: isMatch ? 0.7 : 0.05
                 });
+
+                layer.setRadius(4 + Math.sqrt(filteredCount) * 2);
+
+                const popup = layer.getPopup();
+
+                if (popup) {
+                    const venueName = layer.options.venueName || "";
+                    popup.setContent(
+                        `<b>${venueName}</b><br>${filteredCount} screenings`
+                    );
+                }
             });
         }
     }
