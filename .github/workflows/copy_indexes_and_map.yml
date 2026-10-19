@@ -42,6 +42,7 @@ jobs:
 
           cp gen/map/map.html docs/map.html
           cp gen/map/search_data.json docs/search_data.json
+          cp gen/map/screening_data.json docs/screening_data.json
 
           git worktree remove gen --force
 
@@ -51,7 +52,7 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add -A docs/indexes docs/map.html docs/search_data.json
+          git add -A docs/indexes docs/map.html docs/search_data.json docs/screening_data.json
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
