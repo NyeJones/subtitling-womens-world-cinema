@@ -129,6 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const query = value.trim().toLowerCase();
         const matches = getMatches(query);
 
+        if (window.screeningMap) {
+            window.screeningMap.closePopup();
+}
+
         if (searchCount) {
             searchCount.textContent = query
                 ? `${matches.length} matching venues`

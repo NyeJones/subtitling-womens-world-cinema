@@ -43,9 +43,14 @@
     background: #ffffff;
     color: rgba(128, 0, 0, 1);
     font-size: 14px;
-    font-family: "Trebuchet MS", sans-serif;
+    font-family: Arial, sans-serif;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+#film-search-type:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 #film-search-suggestions {
