@@ -12,6 +12,7 @@ build_dir = os.path.join(base_dir, "build")
 films_input_path = os.path.join(data_dir, "films.csv")
 screens_input_path = os.path.join(data_dir, "screenings.csv")
 search_data_path = os.path.join(base_dir, "search_data.json")
+screening_data_path = os.path.join(base_dir, "screening_data.json")
 
 output_path = os.path.join(base_dir, "map.html")
 
@@ -83,8 +84,12 @@ search_data = venue_summary_df[
 with open(search_data_path, "w", encoding="utf-8") as f:
     json.dump(search_data, f, ensure_ascii=False, default=str, indent=2)
 
-with open(search_data_path, "w", encoding="utf-8") as f:
-    json.dump(search_data, f, ensure_ascii=False, default=str, indent=2)
+screening_data = screens_films_df[
+    ["Venue", "Location", "Film Title", "Director"]
+].to_dict(orient="records")
+
+with open(screening_data_path, "w", encoding="utf-8") as f:
+    json.dump(screening_data, f, ensure_ascii=False, default=str,indent=2)
 
 m = folium.Map(location = [54.5, -3.0], zoom_start=5, tiles=None)
 
@@ -119,6 +124,7 @@ for _, row in venue_summary_df.iterrows():
 
     # Store the venue name as a JavaScript-readable property.
     marker.options["venueName"] = str(row["Venue"]).strip()
+    marker.options["screeningCount"] = int(row["screening_count"])
 
     marker.add_to(m)
 
