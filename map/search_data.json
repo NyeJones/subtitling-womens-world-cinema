@@ -20,15 +20,18 @@
     "location": "London",
     "Latitude": 51.494770494338375,
     "Longitude": -0.17726822599467632,
-    "screening_count": 1,
+    "screening_count": 2,
     "film_ids": [
-      "film_0001"
+      "film_0001",
+      "film_0002"
     ],
     "film_titles": [
-      "El mundo sigue"
+      "El mundo sigue",
+      "Test film"
     ],
     "directors": [
-      "Fernando Fernán-Gómez"
+      "Fernando Fernán-Gómez",
+      "Test Director"
     ]
   }
 ]
