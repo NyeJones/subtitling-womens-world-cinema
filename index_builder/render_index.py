@@ -28,7 +28,7 @@ def render_search():
     html = [
         "  <form id='index-search-form' class='d-flex mt-3 mt-md-0 index-search-form' onsubmit='return false;'>",
         "    <div class='input-group input-group-sm search-group'>",
-        "      <input type='text' id='index-search' class='search-input form-control' placeholder='Search by name, diacritics ignored..' autocomplete='off'>",
+        "      <input type='text' id='index-search' class='search-input form-control' placeholder='Search by title, director, venue or location.. ' autocomplete='off'>",
         "      <button type='button' id='search-clear' class='btn btn-secondary search-button search-clear-btn'>Clear</button>",
         "    </div>",
         "  </form>"

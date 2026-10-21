@@ -269,33 +269,29 @@ document.addEventListener('DOMContentLoaded', () => {
         activeLetter === "all" ||
         letterEntry.dataset.letter.toUpperCase() === activeLetter.toUpperCase();
 
-      // Keep track of how many entries in this group match the search.
-      let visibleCount = 0;
 
       // Filter the individual entries within the letter group.
       letterEntry.querySelectorAll(".index-entry").forEach(entry => {
-        const title = entry.querySelector(".entry-title");
-        
-        // Skip entries that do not contain a searchable title.
-        if (!title) return;
+          
+          // Collect all searchable fields
+        const searchableFields = entry.querySelectorAll(
+          ".entry-title, .entry-directors .item-name, .entry-languages .item-name, .entry-location .item-name, .entry-venue .item-name"
+        );
 
-        const text = normalizeText(title.textContent);
-        const matchesSearch = !regex || regex.test(text);
+          // Combine and normalise the searchable text.
+          const text = normalizeText(
+            Array.from(searchableFields)
+              .map(field => field.textContent)
+              .join(" ")
+          );
 
-        // An entry is visible only when it matches both filters.
-        const visible = matchesLetter && matchesSearch;
+          // An entry is visible if both filters match.
+          const matchesSearch = !regex || regex.test(text);
+          const visible = matchesLetter && matchesSearch;
 
-        // Show or hide the individual entry according to the active
-        // letter filter and search query.
-        entry.style.display = visible ? "block" : "none";
-        
-        // Increment the count of visible entries in this group.
-        if (visible) visibleCount++;
-      });
+          entry.style.display = visible ? "block" : "none";
+        });
 
-      // Show the letter group when it contains at least one visible entry.
-      // Hide it when none of its entries match.
-      letterEntry.style.display = visibleCount ? "block" : "none";
     });
 
     // Update the visible/total entry count after filtering.
@@ -329,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
 
 // ============================================================
 // Entry click handlers

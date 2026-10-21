@@ -38,7 +38,7 @@ films_df["Film ID"] = films_df["Film ID"].ffill()
 screens_df = pd.read_csv(screens_input_path)
 screens_df["Month"] = pd.to_datetime(
     screens_df["Month"],
-    dayfirst=True,
+    format="%b-%y",
     errors="coerce"
 )
 
@@ -84,7 +84,7 @@ films_alpha = group_items_alphabetically(films)
 body_html = render_index_sections(films_alpha)
 
 #create the title for the entity index page
-film_index_title = "Film Index"
+film_index_title = "Film and Screenings Index"
 film_index_html = render_page(film_index_title, body_html)
 
 #write the generated index page to the build directory
