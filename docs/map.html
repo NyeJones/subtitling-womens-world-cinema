@@ -18,7 +18,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_db4b823faf2c941b4d7c941b5e92b4a5 {
+                #map_c29f6f147884a45d4e71ab17e4067795 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -77,20 +77,20 @@
     
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                window.screeningMap = map_db4b823faf2c941b4d7c941b5e92b4a5;
+                window.screeningMap = map_c29f6f147884a45d4e71ab17e4067795;
             });
         </script>
         
     
-            <div class="folium-map" id="map_db4b823faf2c941b4d7c941b5e92b4a5" ></div>
+            <div class="folium-map" id="map_c29f6f147884a45d4e71ab17e4067795" ></div>
         
 </body>
 <script>
     
-    window.screeningMap = map_db4b823faf2c941b4d7c941b5e92b4a5;
+    window.screeningMap = map_c29f6f147884a45d4e71ab17e4067795;
     
-            var map_db4b823faf2c941b4d7c941b5e92b4a5 = L.map(
-                "map_db4b823faf2c941b4d7c941b5e92b4a5",
+            var map_c29f6f147884a45d4e71ab17e4067795 = L.map(
+                "map_c29f6f147884a45d4e71ab17e4067795",
                 {
                     center: [54.5, -3.0],
                     crs: L.CRS.EPSG3857,
@@ -107,7 +107,7 @@
 
         
     
-            var tile_layer_349a9c8d77084b653c4d47fd9dde5628 = L.tileLayer(
+            var tile_layer_898095657179dcc97bc609e5cf81f51f = L.tileLayer(
                 "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -124,33 +124,66 @@
             );
         
     
-            tile_layer_349a9c8d77084b653c4d47fd9dde5628.addTo(map_db4b823faf2c941b4d7c941b5e92b4a5);
+            tile_layer_898095657179dcc97bc609e5cf81f51f.addTo(map_c29f6f147884a45d4e71ab17e4067795);
         
     
-            var circle_marker_b28e650ede874189abdafcfd4cedc19b = L.circleMarker(
-                [50.7253549948146, -3.531422367306084],
-                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Exeter Phoenix", "weight": 3}
-            ).addTo(map_db4b823faf2c941b4d7c941b5e92b4a5);
+            var circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d = L.circleMarker(
+                [51.52033451354355, -0.09345381050341417],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.464101615137754, "screeningCount": 3, "stroke": true, "venueName": "Barbican", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
         
     
-        var popup_b174e3a1cb9594eabf492c880a71cc68 = L.popup({
+        var popup_9323e47528b689532152997c5e9bf67b = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_c566d871eb8c8d1fa7942fb499c37f44 = $(`<div id="html_c566d871eb8c8d1fa7942fb499c37f44" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
-                popup_b174e3a1cb9594eabf492c880a71cc68.setContent(html_c566d871eb8c8d1fa7942fb499c37f44);
+                var html_bd1500e79ab31715f961929ab91181c7 = $(`<div id="html_bd1500e79ab31715f961929ab91181c7" style="width: 100.0%; height: 100.0%;"><b>Barbican</b><br>3 screenings</div>`)[0];
+                popup_9323e47528b689532152997c5e9bf67b.setContent(html_bd1500e79ab31715f961929ab91181c7);
             
         
 
-        circle_marker_b28e650ede874189abdafcfd4cedc19b.bindPopup(popup_b174e3a1cb9594eabf492c880a71cc68)
+        circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d.bindPopup(popup_9323e47528b689532152997c5e9bf67b)
         ;
 
         
     
     
-            circle_marker_b28e650ede874189abdafcfd4cedc19b.bindTooltip(
+            circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d.bindTooltip(
+                `<div>
+                     Barbican
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc = L.circleMarker(
+                [50.72550580168095, -3.531404174000089],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Exeter Phoenix", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+        
+    
+        var popup_a2cc2fefbcb5fea98b982fd4d57a047a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a4a70d600cab362a2876a77285ab4d48 = $(`<div id="html_a4a70d600cab362a2876a77285ab4d48" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
+                popup_a2cc2fefbcb5fea98b982fd4d57a047a.setContent(html_a4a70d600cab362a2876a77285ab4d48);
+            
+        
+
+        circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc.bindPopup(popup_a2cc2fefbcb5fea98b982fd4d57a047a)
+        ;
+
+        
+    
+    
+            circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc.bindTooltip(
                 `<div>
                      Exeter Phoenix
                  </div>`,
@@ -160,32 +193,131 @@
             );
         
     
-            var circle_marker_43b1e5a3ae8668e30467ce5d48853a4e = L.circleMarker(
-                [51.494770494338375, -0.17726822599467632],
-                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.82842712474619, "screeningCount": 2, "stroke": true, "venueName": "Institut Fran\u00e7ais", "weight": 3}
-            ).addTo(map_db4b823faf2c941b4d7c941b5e92b4a5);
+            var circle_marker_4d7027971ffce8ed9b9d6caa9abc686c = L.circleMarker(
+                [51.49975315117527, -0.1741612701422849],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Goethe-Institut", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
         
     
-        var popup_452a68dd9525c71075da51559e082bec = L.popup({
+        var popup_2347a97dcb908d3951a25eda443d375c = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_df2e85a9f0c8a7d86ebc5744b4db10bf = $(`<div id="html_df2e85a9f0c8a7d86ebc5744b4db10bf" style="width: 100.0%; height: 100.0%;"><b>Institut Français</b><br>2 screenings</div>`)[0];
-                popup_452a68dd9525c71075da51559e082bec.setContent(html_df2e85a9f0c8a7d86ebc5744b4db10bf);
+                var html_52223f1d1e7a8d2a6d792063d3f307c4 = $(`<div id="html_52223f1d1e7a8d2a6d792063d3f307c4" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut</b><br>1 screenings</div>`)[0];
+                popup_2347a97dcb908d3951a25eda443d375c.setContent(html_52223f1d1e7a8d2a6d792063d3f307c4);
             
         
 
-        circle_marker_43b1e5a3ae8668e30467ce5d48853a4e.bindPopup(popup_452a68dd9525c71075da51559e082bec)
+        circle_marker_4d7027971ffce8ed9b9d6caa9abc686c.bindPopup(popup_2347a97dcb908d3951a25eda443d375c)
         ;
 
         
     
     
-            circle_marker_43b1e5a3ae8668e30467ce5d48853a4e.bindTooltip(
+            circle_marker_4d7027971ffce8ed9b9d6caa9abc686c.bindTooltip(
                 `<div>
-                     Institut Français
+                     Goethe-Institut
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3098e5346bcf9accfc24dcd620eac0df = L.circleMarker(
+                [51.49975315117527, -0.1741612701422849],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Goethe-Institut", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+        
+    
+        var popup_ec65d69eba50ef3ef74f75f8a7d8b901 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_aea8c8d754e7887d6a3e1cb1b4dd2d0d = $(`<div id="html_aea8c8d754e7887d6a3e1cb1b4dd2d0d" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut </b><br>1 screenings</div>`)[0];
+                popup_ec65d69eba50ef3ef74f75f8a7d8b901.setContent(html_aea8c8d754e7887d6a3e1cb1b4dd2d0d);
+            
+        
+
+        circle_marker_3098e5346bcf9accfc24dcd620eac0df.bindPopup(popup_ec65d69eba50ef3ef74f75f8a7d8b901)
+        ;
+
+        
+    
+    
+            circle_marker_3098e5346bcf9accfc24dcd620eac0df.bindTooltip(
+                `<div>
+                     Goethe-Institut 
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3325cbaa180f13fd9f09bc4652f1d14 = L.circleMarker(
+                [53.45294702429217, -2.254747666388255],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.82842712474619, "screeningCount": 2, "stroke": true, "venueName": "Greater Manchester Arts Centre", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+        
+    
+        var popup_4d9c752af965f4b4cfd7378fdea7e368 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_ee2eca92bf6559cfacdeefe624730fa0 = $(`<div id="html_ee2eca92bf6559cfacdeefe624730fa0" style="width: 100.0%; height: 100.0%;"><b>Greater Manchester Arts Centre</b><br>2 screenings</div>`)[0];
+                popup_4d9c752af965f4b4cfd7378fdea7e368.setContent(html_ee2eca92bf6559cfacdeefe624730fa0);
+            
+        
+
+        circle_marker_d3325cbaa180f13fd9f09bc4652f1d14.bindPopup(popup_4d9c752af965f4b4cfd7378fdea7e368)
+        ;
+
+        
+    
+    
+            circle_marker_d3325cbaa180f13fd9f09bc4652f1d14.bindTooltip(
+                `<div>
+                     Greater Manchester Arts Centre
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_001e63c8560a023154abddca074b64ac = L.circleMarker(
+                [50.73617889921626, -3.535232633732758],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "University of Exeter", "weight": 3}
+            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+        
+    
+        var popup_7ca502637e7a05d205e3657dd30fe46e = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_98f4ee353544583fefbfb398e12e8cca = $(`<div id="html_98f4ee353544583fefbfb398e12e8cca" style="width: 100.0%; height: 100.0%;"><b>University of Exeter</b><br>1 screenings</div>`)[0];
+                popup_7ca502637e7a05d205e3657dd30fe46e.setContent(html_98f4ee353544583fefbfb398e12e8cca);
+            
+        
+
+        circle_marker_001e63c8560a023154abddca074b64ac.bindPopup(popup_7ca502637e7a05d205e3657dd30fe46e)
+        ;
+
+        
+    
+    
+            circle_marker_001e63c8560a023154abddca074b64ac.bindTooltip(
+                `<div>
+                     University of Exeter
                  </div>`,
                 {
   "sticky": true,
