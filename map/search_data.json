@@ -1,37 +1,105 @@
 [
   {
-    "Venue": "Exeter Phoenix",
-    "location": "Exeter",
-    "Latitude": 50.7253549948146,
-    "Longitude": -3.531422367306084,
-    "screening_count": 1,
+    "Venue": "Barbican",
+    "location": "London",
+    "Latitude": 51.52033451354355,
+    "Longitude": -0.09345381050341417,
+    "screening_count": 3,
     "film_ids": [
-      "film_0001"
+      "film_0001",
+      "film_0002",
+      "film_0003"
     ],
     "film_titles": [
-      "El mundo sigue"
+      "Privarzaniyat balon",
+      "A byahme mladi",
+      "Baseynat"
     ],
     "directors": [
-      "Fernando Fernán-Gómez"
+      "Binka Zhelyazkova"
     ]
   },
   {
-    "Venue": "Institut Français",
-    "location": "London",
-    "Latitude": 51.494770494338375,
-    "Longitude": -0.17726822599467632,
-    "screening_count": 2,
+    "Venue": "Exeter Phoenix",
+    "location": "Exeter",
+    "Latitude": 50.72550580168095,
+    "Longitude": -3.531404174000089,
+    "screening_count": 1,
     "film_ids": [
-      "film_0001",
-      "film_0002"
+      "film_0006"
     ],
     "film_titles": [
-      "El mundo sigue",
-      "Test film"
+      "¡Vámonos, Bárbara!"
     ],
     "directors": [
-      "Fernando Fernán-Gómez",
-      "Test Director"
+      "Cecilia Bartolomé"
+    ]
+  },
+  {
+    "Venue": "Goethe-Institut",
+    "location": "London",
+    "Latitude": 51.49975315117527,
+    "Longitude": -0.1741612701422849,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0005"
+    ],
+    "film_titles": [
+      "Ich denke oft an Hawaii"
+    ],
+    "directors": [
+      "Elfi Mikesch"
+    ]
+  },
+  {
+    "Venue": "Goethe-Institut ",
+    "location": "London",
+    "Latitude": 51.49975315117527,
+    "Longitude": -0.1741612701422849,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0004"
+    ],
+    "film_titles": [
+      "Verführung: die grausame Frau"
+    ],
+    "directors": [
+      "Elfi Mikesch",
+      "Monika Treut"
+    ]
+  },
+  {
+    "Venue": "Greater Manchester Arts Centre",
+    "location": "Manchester",
+    "Latitude": 53.45294702429217,
+    "Longitude": -2.254747666388255,
+    "screening_count": 2,
+    "film_ids": [
+      "film_0006",
+      "film_0007"
+    ],
+    "film_titles": [
+      "¡Vámonos, Bárbara!",
+      "Margarita y el lobo"
+    ],
+    "directors": [
+      "Cecilia Bartolomé"
+    ]
+  },
+  {
+    "Venue": "University of Exeter",
+    "location": "Exeter",
+    "Latitude": 50.73617889921626,
+    "Longitude": -3.535232633732758,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0006"
+    ],
+    "film_titles": [
+      "¡Vámonos, Bárbara!"
+    ],
+    "directors": [
+      "Cecilia Bartolomé"
     ]
   }
 ]
