@@ -334,7 +334,7 @@ button[type="submit"] {
 /* Each screening is a horizontal row. */
 .screening-row {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #ddd;

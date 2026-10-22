@@ -38,7 +38,7 @@ films_df["Film ID"] = films_df["Film ID"].ffill()
 screens_df = pd.read_csv(screens_input_path)
 screens_df["Month"] = pd.to_datetime(
     screens_df["Month"],
-    format="%b-%y",
+    format="%m/%Y",
     errors="coerce"
 )
 
@@ -74,6 +74,7 @@ for film_id, group in screens_df.groupby("Film ID"):
             "month": row["Month"].strftime("%m/%Y")
                      if pd.notna(row["Month"]) else "",
             "screen_type": row["Screening Type"],
+            "organisation": row["Organisation"]
         }
 
         films[film_id]["screenings"].append(screening)

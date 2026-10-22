@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
           
           // Collect all searchable fields
         const searchableFields = entry.querySelectorAll(
-          ".entry-title, .entry-directors .item-name, .entry-languages .item-name, .entry-location .item-name, .entry-venue .item-name"
+          ".entry-title, .entry-id, .entry-directors .item-name, .entry-languages .item-name, .entry-location .item-name, .entry-venue .item-name"
         );
 
           // Combine and normalise the searchable text.

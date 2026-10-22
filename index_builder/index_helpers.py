@@ -41,16 +41,23 @@ def group_items_alphabetically(film_data):
 
     #determine the grouping letter for each item from its preferred name
     for film_id, item_data in film_data.items():
-        name_list = item_data.get("film_title")
+        name = item_data.get("film_title")
 
         item_data["film_id"] = film_id
 
-        if name_list:
-            name = name_list[0]
+        if name:
             normalized = normalize_for_sort(name)
 
-            #use "#" for names that cannot produce a grouping letter
-            first_letter = normalized[0].upper() if normalized else "#"
+            #ignore a leading exclamation mark when choosing the group.
+            normalized = normalized.lstrip("!")
+
+            #group alphabetically, or under "#" if the title starts with a number
+            #or another non-alphabetic character.
+            first_letter = (
+                normalized[0].upper()
+                if normalized and normalized[0].isalpha()
+                else "#"
+            )
         else:
             #items without a preferred name are grouped under "#"
             first_letter = "#"

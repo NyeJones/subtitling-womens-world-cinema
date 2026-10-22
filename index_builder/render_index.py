@@ -12,8 +12,11 @@ def render_alphabet_nav():
         element containing buttons for each uppercase letter.
     """
     html = ["  <div class='alphabet mb-3 d-flex flex-wrap gap-2' id='alphabet-nav'>"]
-    for letter in string.ascii_uppercase:
-        html.append(f"    <button class='btn btn-sm btn-outline-secondary alphabet-btn' data-letter='{letter}'>{letter}</button>")
+    for letter in (*string.ascii_uppercase, "#"):
+        html.append(
+            f"    <button class='btn btn-sm btn-outline-secondary alphabet-btn' "
+            f"data-letter='{letter}'>{letter}</button>"
+        )
     html.append("   <button type='button' class='btn btn-sm btn-outline-primary show-all alphabet-btn' data-letter='all'>Show All</button>")
     html.append("  </div>")
     return html
@@ -28,7 +31,7 @@ def render_search():
     html = [
         "  <form id='index-search-form' class='d-flex mt-3 mt-md-0 index-search-form' onsubmit='return false;'>",
         "    <div class='input-group input-group-sm search-group'>",
-        "      <input type='text' id='index-search' class='search-input form-control' placeholder='Search by title, director, venue or location.. ' autocomplete='off'>",
+        "      <input type='text' id='index-search' class='search-input form-control' placeholder='Search by film, director, venue or location.. ' autocomplete='off'>",
         "      <button type='button' id='search-clear' class='btn btn-secondary search-button search-clear-btn'>Clear</button>",
         "    </div>",
         "  </form>"
@@ -138,6 +141,13 @@ def screenings_processed(screenings_data):
         html.append("<div class='entry-block entry-type'>")
         html.append("<span class='subheading'>Screening Type</span>")
         html.append(f"<span class='item-name'>{esc(screen_type)}</span>")
+        html.append("</div>")
+
+        organisation = screening["organisation"]
+
+        html.append("<div class='entry-block entry-type'>")
+        html.append("<span class='subheading'>Organisation</span>")
+        html.append(f"<span class='item-name'>{esc(organisation)}</span>")
         html.append("</div>")
 
         html.append("</div>")
@@ -290,7 +300,7 @@ def render_index_sections(items_by_letter):
 
     #iterate through the alphabet in order so that entries remain grouped
     #according to their initial letter in the rendered index
-    for letter in string.ascii_uppercase:
+    for letter in (*string.ascii_uppercase, "#"):
         if letter in items_by_letter:
             for item_data in items_by_letter[letter]:
                                 
