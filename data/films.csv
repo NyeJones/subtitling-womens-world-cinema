@@ -1,5 +1,10 @@
 Film ID,Film Title,Director,Year,Country,Language,IMDB,Subtitles
-film_0001,El mundo sigue,Fernando Fernán-Gómez,1965,Spain,Spanish,tt0057333,Yes
-,,,,France,French,,
-film_0002,Test film,Test Director,2000,Spain,Spanish,test,Yes
-,,,,France,French,,
+film_0001,Privarzaniyat balon,Binka Zhelyazkova,1967,Bulgaria,Bulgarian,tt0166770,No
+film_0002,A byahme mladi,Binka Zhelyazkova,1961,Bulgaria,Bulgarian,tt0176411,No
+film_0003,Baseynat,Binka Zhelyazkova,1977,Bulgaria,Bulgarian,tt0176513,No
+film_0004,Verführung: die grausame Frau,Elfi Mikesch,1985,West Germany,German,tt0090252,No
+,,Monika Treut,,,,,
+film_0005,Ich denke oft an Hawaii,Elfi Mikesch,1978,West Germany,German,tt0163001,No
+film_0006,"¡Vámonos, Bárbara!",Cecilia Bartolomé,1978,Spain,Spanish,tt0076901,No
+film_0007,Margarita y el lobo,Cecilia Bartolomé,1969,Spain,Spanish,tt0157975,No
+film_0008,300,Cecilia Bartolomé,1969,Spain,Spanish,tt0157975,No
