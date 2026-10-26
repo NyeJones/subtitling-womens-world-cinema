@@ -1,0 +1,415 @@
+/* -----------------------------
+   Body & Fonts
+----------------------------- */
+
+body {
+    font-family: system-ui, sans-serif;
+    background-color: #f0f0f0;
+    color: #222222;        
+}
+
+/* Ensure sticky footer works */
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* -----------------------------
+   Headings
+----------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    font-size: 2.5rem; /* default is usually 2rem in Bootstrap */
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    font-family: system-ui, sans-serif;
+}
+
+/* -----------------------------
+   Navbar / Header
+----------------------------- */
+
+/* Default header on all other pages */
+.navbar {
+    background-color: #6B0000;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar a.navbar-brand,
+.navbar a.nav-link {
+    color: #FDF6E3;
+    transition: color 0.2s ease;
+}
+
+.navbar a.navbar-brand:hover,
+.navbar a.nav-link:hover,
+.navbar .dropdown-item:hover {
+    color: #B8863B;
+}
+
+/* Transparent header on homepage only */
+.home-page .navbar {
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Light navigation text over the homepage hero */
+.home-page .navbar a.navbar-brand,
+.home-page .navbar a.nav-link {
+    color: #FDF6E3;
+}
+
+/* Homepage link hover */
+.home-page .navbar a.navbar-brand:hover,
+.home-page .navbar a.nav-link:hover {
+    color: #B8863B;
+}
+
+/* Navbar toggler */
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+    width: 2em;
+    height: 2em;
+}
+
+.navbar-toggler {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+/* Small screens */
+@media (max-width: 575.98px) {
+    .site-navbar .container-fluid {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+/* Very large screens */
+@media (min-width: 1400px) {
+    .site-navbar .container-fluid {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+/* -----------------------------
+   Footer / Bottom Menu
+----------------------------- */
+.site-footer {
+    position: relative;
+    isolation: isolate;
+    background-color: #0d1720;
+    padding-bottom: 2rem !important;
+}
+
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../img/textures/grain_2.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(35%);
+    z-index: -1;
+}
+
+/* Smaller, quieter headings */
+.footer-heading {
+    color: #FDF6E3;
+    margin-bottom: 0.85rem;
+    
+}
+
+/* Smaller link text */
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 0.2rem;
+}
+
+.footer-list a {
+    font-size: 0.75rem;
+    color: #FDF6E3;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-list a:hover {
+    color: #B8863B;
+}
+
+@media (max-width: 768px) {
+
+    /* Add subtle separation */
+    .site-footer .row > div:not(:last-child) {
+        padding-bottom: 1.3rem;
+    }
+
+    /* Make each item a flex row */
+    .footer-partner {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.6rem;
+    }
+
+    /* Ensure links behave nicely */
+    .footer-partner a {
+        display: inline;
+        font-size: 0.95rem;
+    }
+
+    /* Target the logo link specifically (second <a>) */
+    .footer-partner a:last-child {
+        display: flex;
+        align-items: center;
+    }
+
+
+    /* Improve tap spacing slightly */
+    .footer-list a {
+        padding: 0.2rem 0;
+    }
+
+    /* Headings */
+    .footer-heading {
+        font-size: 1.25rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .site-footer::before {
+        filter: brightness(25%);
+}
+
+}
+
+
+/* -----------------------------
+   Buttons / Optional Custom Elements
+----------------------------- */
+.btn-custom {
+    background-color: #FFD700 !important; /* gold */
+    color: #6B0000;             /* rich maroon text */
+    border: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #C9A44B; /* slightly darker gold on hover */
+}
+
+.btn-info-box {
+    background-color: #6B0000 !important;
+    color: #ffffff;              
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-info-box:hover {
+    background-color: #8C0000 !important;   /* slightly brighter on hover */
+    transform: translateY(-1px); /* subtle lift effect */
+    text-decoration: none;
+    color: #ffffff;
+}
+
+
+
+/* -----------------------------
+   Index Page
+----------------------------- */
+
+/* HERO VIDEO */
+.hero-panel {
+    position: relative;
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 120px);
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(80%) contrast(160%);
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(32, 124, 184, 0.7);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* HERO TEXT */
+.info-box {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 150px 8% 80px;
+    background: transparent;
+}
+
+.info-box h1 {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+.info-box h2 {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.4;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* INTRO SECTION */
+.intro-section {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -60px;
+}
+
+.intro-box {
+    max-width: 75%;
+    margin-left: 90px;
+    padding: 1.5rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.intro-text {
+    flex: 1.3;
+    line-height: 1.6;
+}
+
+.intro-text a {
+    color: #6B0000;
+    font-size: 0.5rem;
+}
+
+.intro-text a:hover {
+    color: #C08000;
+}
+
+/* INTRO IMAGE AND CAPTION */
+.intro-fig {
+    flex: 1;
+    max-width: 350px;
+}
+
+.intro-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.intro-caption {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* RESPONSIVE LAYOUT */
+
+/* Wider text area on larger screens */
+@media (min-width: 911px) {
+    .info-box {
+        max-width: 1100px;
+    }
+}
+
+/* FULL-SCREEN MOBILE MENU */
+@media (max-width: 991.98px) {
+    .site-navbar .navbar-collapse {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: #111111;
+        z-index: 2000;
+        padding: 100px 30px 30px;
+        overflow-y: auto;
+    }
+
+    .site-navbar .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-left: 30px !important;
+    }
+
+    .site-navbar .nav-link {
+        font-size: 1.1rem;
+        color: #FDF6E3;
+    }
+
+    .site-navbar .nav-link:hover {
+        color: #FFD700;
+    }
+
+    .site-navbar .navbar-toggler {
+        position: relative;
+        z-index: 2001;
+    }
+
+    /* Keep Home left and hamburger right */
+    .site-navbar .container-fluid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .site-navbar .navbar-brand {
+        position: relative;
+        z-index: 2001;
+        display: inline-block;
+        margin-right: auto;
+    }
+
+}
