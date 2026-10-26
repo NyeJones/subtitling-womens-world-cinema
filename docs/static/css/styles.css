@@ -375,6 +375,21 @@ h1 {
         z-index: 2000;
         padding: 100px 30px 30px;
         overflow-y: auto;
+
+        /* Smooth animation */
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    .site-navbar .navbar-collapse.show {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
     }
 
     .site-navbar .navbar-nav {
