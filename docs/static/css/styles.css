@@ -3,7 +3,7 @@
 ----------------------------- */
 
 body {
-    font-family: system-ui, sans-serif;
+    font-family: futura, sans-serif;
     background-color: #f0f0f0;
     color: #222222;        
 }
@@ -17,8 +17,9 @@ body {
    Headings
 ----------------------------- */
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: system-ui, sans-serif;
+
+h2, h3, h4, h5, h6 {
+    font-family: futura, sans-serif;
 }
 
 h1 {
