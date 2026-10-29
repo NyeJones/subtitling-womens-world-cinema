@@ -1,45 +1,78 @@
-/* -----------------------------
-   Body & Fonts
------------------------------ */
+/* ==================================================
+   1. Base Styles & Typography
+================================================== */
 
 body {
     font-family: futura, sans-serif;
     background-color: #f0f0f0;
-    color: #222222;        
+    color: #222222;
 }
 
-/* Ensure sticky footer works */
-.flex-grow-1 {
-    flex-grow: 1;
-}
-
-/* -----------------------------
-   Headings
------------------------------ */
-
-
-h2, h3, h4, h5, h6 {
-    font-family: futura, sans-serif;
+body:not(.home-page) {
+    background-color: #0d1720;
+    background-image: url("../img/textures/grain_2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 h1 {
-    font-size: 2.5rem; /* default is usually 2rem in Bootstrap */
+    font-family: system-ui, sans-serif;
+    font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    font-family: system-ui, sans-serif;
 }
 
-/* -----------------------------
-   Navbar / Header
------------------------------ */
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: futura, sans-serif;
+}
 
-/* Default header on all other pages */
-.navbar {
-    background-color: #6B0000;
-    position: relative;
+/* ==================================================
+   2. Navbar
+================================================== */
+
+.site-navbar {
+    position: sticky;
+    top: 0;
     z-index: 1000;
 }
 
+/* Dark textured navbar on non-home pages */
+.site-navbar:not(.home-page .site-navbar) {
+    isolation: isolate;
+    background-color: #0d1720;
+}
+
+.site-navbar:not(.home-page .site-navbar)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url("../img/textures/grain_2.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(45%);
+}
+
+/* Transparent navbar over the homepage hero */
+.home-page .site-navbar {
+    width: 100%;
+    margin-bottom: -76px;
+    background-color: transparent;
+    background-image: none;
+}
+
+.home-page .site-navbar .container-fluid {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Navbar links */
 .navbar a.navbar-brand,
 .navbar a.nav-link {
     color: #FDF6E3;
@@ -52,97 +85,132 @@ h1 {
     color: #B8863B;
 }
 
-/* Transparent header on homepage only */
-.home-page .navbar {
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-/* Light navigation text over the homepage hero */
-.home-page .navbar a.navbar-brand,
-.home-page .navbar a.nav-link {
-    color: #FDF6E3;
-}
-
-/* Homepage link hover */
-.home-page .navbar a.navbar-brand:hover,
-.home-page .navbar a.nav-link:hover {
-    color: #B8863B;
-}
-
 /* Navbar toggler */
 .navbar-toggler-icon {
-    filter: brightness(0) invert(1);
     width: 2em;
     height: 2em;
-}
-
-.navbar-toggler {
-    border-color: transparent;
-    box-shadow: none;
+    filter: brightness(0) invert(1);
 }
 
 .navbar-toggler,
 .navbar-toggler:focus,
 .navbar-toggler:active {
-    outline: none;
-    box-shadow: none;
     border-color: transparent;
+    box-shadow: none;
+    outline: none;
 }
 
-/* Small screens */
+
+/* Responsive navbar container spacing */
 @media (max-width: 575.98px) {
     .site-navbar .container-fluid {
-        padding-left: 30px;
         padding-right: 30px;
+        padding-left: 30px;
     }
 }
 
-/* Very large screens */
+/* Full-screen mobile navigation */
+@media (max-width: 991.98px) {
+    .site-navbar .navbar-collapse {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        padding: 100px 30px 30px;
+        overflow-y: auto;
+        background-color: #111111;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    .site-navbar .navbar-collapse.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .site-navbar .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-left: 30px !important;
+    }
+
+    .site-navbar .nav-link {
+        color: #FDF6E3;
+        font-size: 1.1rem;
+    }
+
+    .site-navbar .nav-link:hover {
+        color: #FFD700;
+    }
+
+    .site-navbar .navbar-toggler,
+    .site-navbar .navbar-brand {
+        position: relative;
+        z-index: 2001;
+    }
+
+    .site-navbar .navbar-brand {
+        display: inline-block;
+        margin-right: auto;
+    }
+
+    .site-navbar .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+/* Extra spacing on very large screens */
 @media (min-width: 1400px) {
     .site-navbar .container-fluid {
-        padding-left: 40px;
         padding-right: 40px;
+        padding-left: 40px;
     }
 }
 
-/* -----------------------------
-   Footer / Bottom Menu
------------------------------ */
+
+/* ==================================================
+   3. Footer
+================================================== */
+
 .site-footer {
     position: relative;
     isolation: isolate;
-    background-color: #0d1720;
     padding-bottom: 2rem !important;
+    background-color: #0d1720;
 }
 
 .site-footer::before {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: -1;
     background-image: url("../img/textures/grain_2.jpg");
     background-size: cover;
     background-position: center;
     filter: brightness(35%);
-    z-index: -1;
 }
 
-/* Smaller, quieter headings */
 .footer-heading {
-    color: #FDF6E3;
     margin-bottom: 0.85rem;
-    
+    color: #FDF6E3;
 }
 
-/* Smaller link text */
 .footer-list {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .footer-list li {
@@ -150,24 +218,22 @@ h1 {
 }
 
 .footer-list a {
-    font-size: 0.75rem;
     color: #FDF6E3;
+    font-size: 0.75rem;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .footer-list a:hover {
     color: #B8863B;
 }
 
+/* Footer layout on smaller screens */
 @media (max-width: 768px) {
-
-    /* Add subtle separation */
     .site-footer .row > div:not(:last-child) {
         padding-bottom: 1.3rem;
     }
 
-    /* Make each item a flex row */
     .footer-partner {
         display: flex;
         align-items: center;
@@ -175,76 +241,67 @@ h1 {
         margin-bottom: 0.6rem;
     }
 
-    /* Ensure links behave nicely */
     .footer-partner a {
         display: inline;
         font-size: 0.95rem;
     }
 
-    /* Target the logo link specifically (second <a>) */
     .footer-partner a:last-child {
         display: flex;
         align-items: center;
     }
 
-
-    /* Improve tap spacing slightly */
     .footer-list a {
         padding: 0.2rem 0;
     }
 
-    /* Headings */
     .footer-heading {
-        font-size: 1.25rem;
         margin-bottom: 0.7rem;
+        font-size: 1.25rem;
     }
 
     .site-footer::before {
         filter: brightness(25%);
+    }
 }
 
-}
+/* ==================================================
+   4. Buttons
+================================================== */
 
-
-/* -----------------------------
-   Buttons / Optional Custom Elements
------------------------------ */
 .btn-custom {
-    background-color: #FFD700 !important; /* gold */
-    color: #6B0000;             /* rich maroon text */
     border: none;
+    background-color: #FFD700 !important;
+    color: #6B0000;
     transition: background-color 0.2s ease;
 }
 
 .btn-custom:hover {
-    background-color: #C9A44B; /* slightly darker gold on hover */
+    background-color: #C9A44B;
 }
 
 .btn-info-box {
-    background-color: #6B0000 !important;
-    color: #ffffff;              
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
     display: inline-block;
-    transition: background-color 0.2s, transform 0.2s;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #6B0000 !important;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-info-box:hover {
-    background-color: #8C0000 !important;   /* slightly brighter on hover */
-    transform: translateY(-1px); /* subtle lift effect */
-    text-decoration: none;
+    background-color: #8C0000 !important;
     color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
 }
 
+/* ==================================================
+   5. Homepage Hero
+================================================== */
 
-
-/* -----------------------------
-   Index Page
------------------------------ */
-
-/* HERO VIDEO */
 .hero-panel {
     position: relative;
     display: flex;
@@ -265,25 +322,25 @@ h1 {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(32, 124, 184, 0.7);
     z-index: 0;
+    background: rgba(32, 124, 184, 0.7);
     pointer-events: none;
 }
 
-/* HERO TEXT */
+/* Hero heading and subtitle */
 .info-box {
     position: relative;
     z-index: 1;
     max-width: 800px;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
     padding: 150px 8% 80px;
     background: transparent;
 }
 
 .info-box h1 {
     margin-bottom: 1rem;
-    color: rgba(255, 255, 255, 0.8);;
+    color: rgba(255, 255, 255, 0.8);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     line-height: 1.1;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
@@ -298,7 +355,17 @@ h1 {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* INTRO SECTION */
+/* Allow a wider hero text area on larger screens */
+@media (min-width: 911px) {
+    .info-box {
+        max-width: 1100px;
+    }
+}
+
+/* ==================================================
+   6. Homepage Intro Elements
+================================================== */
+
 .intro-section {
     position: relative;
     z-index: 1;
@@ -311,8 +378,8 @@ h1 {
     max-width: 75%;
     margin-left: 90px;
     padding: 1.5rem;
-    background: #f0f0f0;
     border-radius: 8px;
+    background: #f0f0f0;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -327,105 +394,192 @@ h1 {
     line-height: 1.6;
 }
 
-.intro-text a {
+.intro-text a,
+.project-text a {
     color: #6B0000;
     font-size: 0.5rem;
 }
 
-.intro-text a:hover {
+.intro-text a:hover,
+.project-text a:hover {
     color: #C08000;
 }
 
-/* INTRO IMAGE AND CAPTION */
-.intro-fig {
-    flex: 1;
-    max-width: 350px;
+/* ==================================================
+   7. Project Aims Page
+================================================== */
+
+.aims-section {
+    max-width: 1200px;
 }
 
-.intro-image {
+/* Text panel */
+.project-text {
+    flex: 1.3;
+    margin-left: 40px;
+    padding: 1rem 1rem 1.5rem;
+    border-radius: 12px;
+    background-color: #ffffff;
+    line-height: 1.6;
+}
+
+.aims-section .project-text h1 {
+    margin-bottom: 1.5rem;
+    color: #222222;
+    line-height: 1.1;
+}
+
+.aims-section .project-text {
+    line-height: 1.8;
+}
+
+/* Project image */
+.aims-section .aims-image {
+    margin: 0;
+}
+
+.aims-section .aims-image img {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: 6px;
 }
 
-.intro-caption {
-    margin-top: 10px;
+/* Image caption */
+.aims-caption {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #555;
     font-size: 0.8rem;
-    font-style: italic;
+    line-height: 1.6;
 }
 
-/* RESPONSIVE LAYOUT */
-
-/* Wider text area on larger screens */
-@media (min-width: 911px) {
-    .info-box {
-        max-width: 1100px;
-    }
-}
-
-/* FULL-SCREEN MOBILE MENU */
+/* Project layout on smaller screens */
 @media (max-width: 991.98px) {
-    .site-navbar .navbar-collapse {
-        position: fixed;
-        inset: 0;
+    .aims-section {
+        padding-top: 2rem !important;
+    }
+
+    .aims-section .project-text {
+        margin: 0 2rem;
+    }
+
+    .aims-section .aims-image {
+        width: calc(100% - 2rem);
+        margin: 3rem auto 0 !important;
+    }
+
+    .aims-section .aims-image img {
+        display: block;
         width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        background-color: #111111;
-        z-index: 2000;
-        padding: 100px 30px 30px;
-        overflow-y: auto;
-
-        /* Smooth animation */
-        opacity: 0;
-        transform: translateY(-10px);
-        visibility: hidden;
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease,
-            visibility 0.3s ease;
+        height: auto;
+        margin: 0 auto;
     }
+}
 
-    .site-navbar .navbar-collapse.show {
-        opacity: 1;
-        transform: translateY(0);
-        visibility: visible;
-    }
+/* -----------------------------
+   Members Page
+----------------------------- */
 
-    .site-navbar .navbar-nav {
+.team-members {
+    flex: 1.3;
+    margin-left: 40px;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #ffffff;
+    line-height: 1.6;
+}
+
+.team-title {
+    margin-bottom: 1rem;
+}
+
+.team-divider {
+    border: none;
+    height: 1px;
+    background-color: rgba(0,0,0,0.8);
+    margin: 0.5rem 0;
+}
+
+.member-card {
+    display: flex;
+    align-items: center;
+    padding: 13px 0;
+}
+
+.member-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 0.25rem;
+}
+
+.member-info h5 {
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
+}
+
+.member-info p {
+    font-size: 0.95rem;
+}
+
+.member-name {
+    margin-top: 1rem;
+}
+
+.member-role {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.member-place {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 4;
+}
+
+.member-bio {
+    margin-bottom: 0;
+    margin-left: 1rem;
+    line-height: 1.75;
+}
+
+
+@media (max-width: 768px) {
+    .member-card {
         flex-direction: column;
         align-items: flex-start;
-        gap: 1rem;
-        margin-left: 30px !important;
     }
 
-    .site-navbar .nav-link {
-        font-size: 1.1rem;
-        color: #FDF6E3;
+    .member-info {
+        width: 100%;
+        margin-bottom: 0;
     }
 
-    .site-navbar .nav-link:hover {
-        color: #FFD700;
+    .member-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
     }
 
-    .site-navbar .navbar-toggler {
-        position: relative;
-        z-index: 2001;
+    .member-bio {
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
     }
 
-    /* Keep Home left and hamburger right */
-    .site-navbar .container-fluid {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .member-name {
+        margin-top: 2rem;
     }
 
-    .site-navbar .navbar-brand {
-        position: relative;
-        z-index: 2001;
-        display: inline-block;
-        margin-right: auto;
+    .member-place {
+        margin-bottom: 1rem;
     }
-
 }
+
+
+
