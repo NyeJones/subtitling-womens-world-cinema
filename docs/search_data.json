@@ -87,6 +87,86 @@
     ]
   },
   {
+    "Venue": "Hyde Park Picture House",
+    "location": "Leeds",
+    "Latitude": 53.812267839050854,
+    "Longitude": -1.5693880479175693,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0008"
+    ],
+    "film_titles": [
+      "A Door to the Sky"
+    ],
+    "directors": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Institute of Contemporary Arts",
+    "location": "London",
+    "Latitude": 51.50619635410611,
+    "Longitude": -0.13119842208851626,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0008"
+    ],
+    "film_titles": [
+      "A Door to the Sky"
+    ],
+    "directors": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Leeds University Union",
+    "location": "Leeds",
+    "Latitude": 53.806830659591235,
+    "Longitude": -1.5564479883992899,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0008"
+    ],
+    "film_titles": [
+      "A Door to the Sky"
+    ],
+    "directors": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Peterhouse College, Cambridge",
+    "location": "Cambridge",
+    "Latitude": 52.19999515529373,
+    "Longitude": 0.11888825092392273,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0010"
+    ],
+    "film_titles": [
+      "Carmen de Carabanchel"
+    ],
+    "directors": [
+      "Cecilia Bartolomé"
+    ]
+  },
+  {
+    "Venue": "The Old Town Hall",
+    "location": "Trowbridge",
+    "Latitude": 51.3203482681322,
+    "Longitude": -2.2069455076280695,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0008"
+    ],
+    "film_titles": [
+      "A Door to the Sky"
+    ],
+    "directors": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
     "Venue": "University of Exeter",
     "location": "Exeter",
     "Latitude": 50.73617889921626,
@@ -100,6 +180,22 @@
     ],
     "directors": [
       "Cecilia Bartolomé"
+    ]
+  },
+  {
+    "Venue": "Watershed",
+    "location": "Bristol",
+    "Latitude": 51.451930961142054,
+    "Longitude": -2.5980567220885153,
+    "screening_count": 1,
+    "film_ids": [
+      "film_0008"
+    ],
+    "film_titles": [
+      "A Door to the Sky"
+    ],
+    "directors": [
+      "Farida Benlyazid"
     ]
   }
 ]
