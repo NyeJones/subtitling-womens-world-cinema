@@ -110,10 +110,9 @@ for _, row in venue_summary_df.iterrows():
     marker = folium.CircleMarker(
         location=[row["Latitude"], row["Longitude"]],
         radius=4 + row["screening_count"] ** 0.5 * 2,
-        tooltip=f'{row["Venue"]}',
         popup=folium.Popup(
             f"<b>{row['Venue']}</b><br>"
-            f"{row['screening_count']} screenings",
+            f"Screenings: {row['screening_count']}",
             max_width=250
         ),
         color=None,
