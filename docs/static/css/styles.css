@@ -443,7 +443,7 @@ h6 {
 .intro-text a,
 .project-text a {
     color: #6B0000;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
 }
 
 .intro-text a:hover,
@@ -586,6 +586,14 @@ h6 {
     line-height: 1.75;
 }
 
+.member-bio-text a {
+    color: #6B0000;
+}
+
+.member-bio-text a:hover {
+    color: #C08000;
+}
+
 
 @media (max-width: 768px) {
     .member-card {
@@ -606,7 +614,7 @@ h6 {
         object-fit: cover;
     }
 
-    .member-bio {
+    .member-bio-text {
         width: 100%;
         margin-top: 0;
         margin-left: 0;
