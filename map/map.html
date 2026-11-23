@@ -4,13 +4,12 @@
     
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="static/css/map.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
@@ -18,10 +17,11 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_c29f6f147884a45d4e71ab17e4067795 {
+                #map_5e2bc49f90248c999c599ed55210db62 {
                     position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
+                    width: 100.0vw;
+                    height: 100.0vh;
+
                     left: 0.0%;
                     top: 0.0%;
                 }
@@ -36,14 +36,218 @@
             }
             </style>
 
-            <style>#map {
-                position:absolute;
-                top:0;
-                bottom:0;
-                right:0;
-                left:0;
-                }
-            </style>
+            <style>/*
+ * Glyphicons Halflings -- the icon font used by folium's default Awesome Markers
+ * (Icon(prefix="glyphicon")). Extracted from Bootstrap 3's glyphicon rules only.
+ *
+ * folium previously loaded netdna's bootstrap-glyphicons.css, which despite its
+ * name ships a full Bootstrap-3 base stylesheet (normalize reset + global `body`
+ * rules) that leaked onto the host page (GH-1820). This file provides just the
+ * @font-face and .glyphicon/.glyphicon-* rules needed for the markers, with no
+ * page-wide side effects. Font files are served from jsDelivr.
+ */
+@font-face{font-family:'Glyphicons Halflings';src:url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.eot');src:url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.woff') format('woff'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');}.glyphicon{position:relative;top:1px;display:inline-block;font-family:'Glyphicons Halflings';font-style:normal;font-weight:normal;line-height:1;-webkit-font-smoothing:antialiased;}
+.glyphicon-asterisk:before{content:"\2a";}
+.glyphicon-plus:before{content:"\2b";}
+.glyphicon-euro:before{content:"\20ac";}
+.glyphicon-minus:before{content:"\2212";}
+.glyphicon-cloud:before{content:"\2601";}
+.glyphicon-envelope:before{content:"\2709";}
+.glyphicon-pencil:before{content:"\270f";}
+.glyphicon-glass:before{content:"\e001";}
+.glyphicon-music:before{content:"\e002";}
+.glyphicon-search:before{content:"\e003";}
+.glyphicon-heart:before{content:"\e005";}
+.glyphicon-star:before{content:"\e006";}
+.glyphicon-star-empty:before{content:"\e007";}
+.glyphicon-user:before{content:"\e008";}
+.glyphicon-film:before{content:"\e009";}
+.glyphicon-th-large:before{content:"\e010";}
+.glyphicon-th:before{content:"\e011";}
+.glyphicon-th-list:before{content:"\e012";}
+.glyphicon-ok:before{content:"\e013";}
+.glyphicon-remove:before{content:"\e014";}
+.glyphicon-zoom-in:before{content:"\e015";}
+.glyphicon-zoom-out:before{content:"\e016";}
+.glyphicon-off:before{content:"\e017";}
+.glyphicon-signal:before{content:"\e018";}
+.glyphicon-cog:before{content:"\e019";}
+.glyphicon-trash:before{content:"\e020";}
+.glyphicon-home:before{content:"\e021";}
+.glyphicon-file:before{content:"\e022";}
+.glyphicon-time:before{content:"\e023";}
+.glyphicon-road:before{content:"\e024";}
+.glyphicon-download-alt:before{content:"\e025";}
+.glyphicon-download:before{content:"\e026";}
+.glyphicon-upload:before{content:"\e027";}
+.glyphicon-inbox:before{content:"\e028";}
+.glyphicon-play-circle:before{content:"\e029";}
+.glyphicon-repeat:before{content:"\e030";}
+.glyphicon-refresh:before{content:"\e031";}
+.glyphicon-list-alt:before{content:"\e032";}
+.glyphicon-flag:before{content:"\e034";}
+.glyphicon-headphones:before{content:"\e035";}
+.glyphicon-volume-off:before{content:"\e036";}
+.glyphicon-volume-down:before{content:"\e037";}
+.glyphicon-volume-up:before{content:"\e038";}
+.glyphicon-qrcode:before{content:"\e039";}
+.glyphicon-barcode:before{content:"\e040";}
+.glyphicon-tag:before{content:"\e041";}
+.glyphicon-tags:before{content:"\e042";}
+.glyphicon-book:before{content:"\e043";}
+.glyphicon-print:before{content:"\e045";}
+.glyphicon-font:before{content:"\e047";}
+.glyphicon-bold:before{content:"\e048";}
+.glyphicon-italic:before{content:"\e049";}
+.glyphicon-text-height:before{content:"\e050";}
+.glyphicon-text-width:before{content:"\e051";}
+.glyphicon-align-left:before{content:"\e052";}
+.glyphicon-align-center:before{content:"\e053";}
+.glyphicon-align-right:before{content:"\e054";}
+.glyphicon-align-justify:before{content:"\e055";}
+.glyphicon-list:before{content:"\e056";}
+.glyphicon-indent-left:before{content:"\e057";}
+.glyphicon-indent-right:before{content:"\e058";}
+.glyphicon-facetime-video:before{content:"\e059";}
+.glyphicon-picture:before{content:"\e060";}
+.glyphicon-map-marker:before{content:"\e062";}
+.glyphicon-adjust:before{content:"\e063";}
+.glyphicon-tint:before{content:"\e064";}
+.glyphicon-edit:before{content:"\e065";}
+.glyphicon-share:before{content:"\e066";}
+.glyphicon-check:before{content:"\e067";}
+.glyphicon-move:before{content:"\e068";}
+.glyphicon-step-backward:before{content:"\e069";}
+.glyphicon-fast-backward:before{content:"\e070";}
+.glyphicon-backward:before{content:"\e071";}
+.glyphicon-play:before{content:"\e072";}
+.glyphicon-pause:before{content:"\e073";}
+.glyphicon-stop:before{content:"\e074";}
+.glyphicon-forward:before{content:"\e075";}
+.glyphicon-fast-forward:before{content:"\e076";}
+.glyphicon-step-forward:before{content:"\e077";}
+.glyphicon-eject:before{content:"\e078";}
+.glyphicon-chevron-left:before{content:"\e079";}
+.glyphicon-chevron-right:before{content:"\e080";}
+.glyphicon-plus-sign:before{content:"\e081";}
+.glyphicon-minus-sign:before{content:"\e082";}
+.glyphicon-remove-sign:before{content:"\e083";}
+.glyphicon-ok-sign:before{content:"\e084";}
+.glyphicon-question-sign:before{content:"\e085";}
+.glyphicon-info-sign:before{content:"\e086";}
+.glyphicon-screenshot:before{content:"\e087";}
+.glyphicon-remove-circle:before{content:"\e088";}
+.glyphicon-ok-circle:before{content:"\e089";}
+.glyphicon-ban-circle:before{content:"\e090";}
+.glyphicon-arrow-left:before{content:"\e091";}
+.glyphicon-arrow-right:before{content:"\e092";}
+.glyphicon-arrow-up:before{content:"\e093";}
+.glyphicon-arrow-down:before{content:"\e094";}
+.glyphicon-share-alt:before{content:"\e095";}
+.glyphicon-resize-full:before{content:"\e096";}
+.glyphicon-resize-small:before{content:"\e097";}
+.glyphicon-exclamation-sign:before{content:"\e101";}
+.glyphicon-gift:before{content:"\e102";}
+.glyphicon-leaf:before{content:"\e103";}
+.glyphicon-eye-open:before{content:"\e105";}
+.glyphicon-eye-close:before{content:"\e106";}
+.glyphicon-warning-sign:before{content:"\e107";}
+.glyphicon-plane:before{content:"\e108";}
+.glyphicon-random:before{content:"\e110";}
+.glyphicon-comment:before{content:"\e111";}
+.glyphicon-magnet:before{content:"\e112";}
+.glyphicon-chevron-up:before{content:"\e113";}
+.glyphicon-chevron-down:before{content:"\e114";}
+.glyphicon-retweet:before{content:"\e115";}
+.glyphicon-shopping-cart:before{content:"\e116";}
+.glyphicon-folder-close:before{content:"\e117";}
+.glyphicon-folder-open:before{content:"\e118";}
+.glyphicon-resize-vertical:before{content:"\e119";}
+.glyphicon-resize-horizontal:before{content:"\e120";}
+.glyphicon-hdd:before{content:"\e121";}
+.glyphicon-bullhorn:before{content:"\e122";}
+.glyphicon-certificate:before{content:"\e124";}
+.glyphicon-thumbs-up:before{content:"\e125";}
+.glyphicon-thumbs-down:before{content:"\e126";}
+.glyphicon-hand-right:before{content:"\e127";}
+.glyphicon-hand-left:before{content:"\e128";}
+.glyphicon-hand-up:before{content:"\e129";}
+.glyphicon-hand-down:before{content:"\e130";}
+.glyphicon-circle-arrow-right:before{content:"\e131";}
+.glyphicon-circle-arrow-left:before{content:"\e132";}
+.glyphicon-circle-arrow-up:before{content:"\e133";}
+.glyphicon-circle-arrow-down:before{content:"\e134";}
+.glyphicon-globe:before{content:"\e135";}
+.glyphicon-tasks:before{content:"\e137";}
+.glyphicon-filter:before{content:"\e138";}
+.glyphicon-fullscreen:before{content:"\e140";}
+.glyphicon-dashboard:before{content:"\e141";}
+.glyphicon-heart-empty:before{content:"\e143";}
+.glyphicon-link:before{content:"\e144";}
+.glyphicon-phone:before{content:"\e145";}
+.glyphicon-usd:before{content:"\e148";}
+.glyphicon-gbp:before{content:"\e149";}
+.glyphicon-sort:before{content:"\e150";}
+.glyphicon-sort-by-alphabet:before{content:"\e151";}
+.glyphicon-sort-by-alphabet-alt:before{content:"\e152";}
+.glyphicon-sort-by-order:before{content:"\e153";}
+.glyphicon-sort-by-order-alt:before{content:"\e154";}
+.glyphicon-sort-by-attributes:before{content:"\e155";}
+.glyphicon-sort-by-attributes-alt:before{content:"\e156";}
+.glyphicon-unchecked:before{content:"\e157";}
+.glyphicon-expand:before{content:"\e158";}
+.glyphicon-collapse-down:before{content:"\e159";}
+.glyphicon-collapse-up:before{content:"\e160";}
+.glyphicon-log-in:before{content:"\e161";}
+.glyphicon-flash:before{content:"\e162";}
+.glyphicon-log-out:before{content:"\e163";}
+.glyphicon-new-window:before{content:"\e164";}
+.glyphicon-record:before{content:"\e165";}
+.glyphicon-save:before{content:"\e166";}
+.glyphicon-open:before{content:"\e167";}
+.glyphicon-saved:before{content:"\e168";}
+.glyphicon-import:before{content:"\e169";}
+.glyphicon-export:before{content:"\e170";}
+.glyphicon-send:before{content:"\e171";}
+.glyphicon-floppy-disk:before{content:"\e172";}
+.glyphicon-floppy-saved:before{content:"\e173";}
+.glyphicon-floppy-remove:before{content:"\e174";}
+.glyphicon-floppy-save:before{content:"\e175";}
+.glyphicon-floppy-open:before{content:"\e176";}
+.glyphicon-credit-card:before{content:"\e177";}
+.glyphicon-transfer:before{content:"\e178";}
+.glyphicon-cutlery:before{content:"\e179";}
+.glyphicon-header:before{content:"\e180";}
+.glyphicon-compressed:before{content:"\e181";}
+.glyphicon-earphone:before{content:"\e182";}
+.glyphicon-phone-alt:before{content:"\e183";}
+.glyphicon-tower:before{content:"\e184";}
+.glyphicon-stats:before{content:"\e185";}
+.glyphicon-sd-video:before{content:"\e186";}
+.glyphicon-hd-video:before{content:"\e187";}
+.glyphicon-subtitles:before{content:"\e188";}
+.glyphicon-sound-stereo:before{content:"\e189";}
+.glyphicon-sound-dolby:before{content:"\e190";}
+.glyphicon-sound-5-1:before{content:"\e191";}
+.glyphicon-sound-6-1:before{content:"\e192";}
+.glyphicon-sound-7-1:before{content:"\e193";}
+.glyphicon-copyright-mark:before{content:"\e194";}
+.glyphicon-registration-mark:before{content:"\e195";}
+.glyphicon-cloud-download:before{content:"\e197";}
+.glyphicon-cloud-upload:before{content:"\e198";}
+.glyphicon-tree-conifer:before{content:"\e199";}
+.glyphicon-tree-deciduous:before{content:"\e200";}
+.glyphicon-briefcase:before{content:"\1f4bc";}
+.glyphicon-calendar:before{content:"\1f4c5";}
+.glyphicon-pushpin:before{content:"\1f4cc";}
+.glyphicon-paperclip:before{content:"\1f4ce";}
+.glyphicon-camera:before{content:"\1f4f7";}
+.glyphicon-lock:before{content:"\1f512";}
+.glyphicon-bell:before{content:"\1f514";}
+.glyphicon-bookmark:before{content:"\1f516";}
+.glyphicon-fire:before{content:"\1f525";}
+.glyphicon-wrench:before{content:"\1f527";}
+</style>
 
             <script>
                 L_NO_TOUCH = false;
@@ -77,20 +281,20 @@
     
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                window.screeningMap = map_c29f6f147884a45d4e71ab17e4067795;
+                window.screeningMap = map_5e2bc49f90248c999c599ed55210db62;
             });
         </script>
         
     
-            <div class="folium-map" id="map_c29f6f147884a45d4e71ab17e4067795" ></div>
+            <div class="folium-map" id="map_5e2bc49f90248c999c599ed55210db62" ></div>
         
 </body>
 <script>
     
-    window.screeningMap = map_c29f6f147884a45d4e71ab17e4067795;
+    window.screeningMap = map_5e2bc49f90248c999c599ed55210db62;
     
-            var map_c29f6f147884a45d4e71ab17e4067795 = L.map(
-                "map_c29f6f147884a45d4e71ab17e4067795",
+            var map_5e2bc49f90248c999c599ed55210db62 = L.map(
+                "map_5e2bc49f90248c999c599ed55210db62",
                 {
                     center: [54.5, -3.0],
                     crs: L.CRS.EPSG3857,
@@ -107,7 +311,7 @@
 
         
     
-            var tile_layer_898095657179dcc97bc609e5cf81f51f = L.tileLayer(
+            var tile_layer_514ee096d70332b050f66aeea39805e9 = L.tileLayer(
                 "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -124,33 +328,33 @@
             );
         
     
-            tile_layer_898095657179dcc97bc609e5cf81f51f.addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            tile_layer_514ee096d70332b050f66aeea39805e9.addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-            var circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d = L.circleMarker(
+            var circle_marker_e0f621d059c83326986f73edb478c696 = L.circleMarker(
                 [51.52033451354355, -0.09345381050341417],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7.464101615137754, "screeningCount": 3, "stroke": true, "venueName": "Barbican", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_9323e47528b689532152997c5e9bf67b = L.popup({
+        var popup_c9ab9e0f74d1204f8dd7cb380f658e4a = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_bd1500e79ab31715f961929ab91181c7 = $(`<div id="html_bd1500e79ab31715f961929ab91181c7" style="width: 100.0%; height: 100.0%;"><b>Barbican</b><br>3 screenings</div>`)[0];
-                popup_9323e47528b689532152997c5e9bf67b.setContent(html_bd1500e79ab31715f961929ab91181c7);
+                var html_f6bc48758a7d1b0fdd6794c1c2e7a58c = $(`<div id="html_f6bc48758a7d1b0fdd6794c1c2e7a58c" style="width: 100.0%; height: 100.0%;"><b>Barbican</b><br>3 screenings</div>`)[0];
+                popup_c9ab9e0f74d1204f8dd7cb380f658e4a.setContent(html_f6bc48758a7d1b0fdd6794c1c2e7a58c);
             
         
 
-        circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d.bindPopup(popup_9323e47528b689532152997c5e9bf67b)
+        circle_marker_e0f621d059c83326986f73edb478c696.bindPopup(popup_c9ab9e0f74d1204f8dd7cb380f658e4a)
         ;
 
         
     
     
-            circle_marker_bfb7c3c3e228c371e6e5c6b479904d6d.bindTooltip(
+            circle_marker_e0f621d059c83326986f73edb478c696.bindTooltip(
                 `<div>
                      Barbican
                  </div>`,
@@ -160,30 +364,30 @@
             );
         
     
-            var circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc = L.circleMarker(
+            var circle_marker_13bfb4267ebbfde36a4fd8876b77b27c = L.circleMarker(
                 [50.72550580168095, -3.531404174000089],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Exeter Phoenix", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_a2cc2fefbcb5fea98b982fd4d57a047a = L.popup({
+        var popup_40b76e8309efdfffe83bc726944f2258 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_a4a70d600cab362a2876a77285ab4d48 = $(`<div id="html_a4a70d600cab362a2876a77285ab4d48" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
-                popup_a2cc2fefbcb5fea98b982fd4d57a047a.setContent(html_a4a70d600cab362a2876a77285ab4d48);
+                var html_a71a3933f2108d14ecd57584f395e255 = $(`<div id="html_a71a3933f2108d14ecd57584f395e255" style="width: 100.0%; height: 100.0%;"><b>Exeter Phoenix</b><br>1 screenings</div>`)[0];
+                popup_40b76e8309efdfffe83bc726944f2258.setContent(html_a71a3933f2108d14ecd57584f395e255);
             
         
 
-        circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc.bindPopup(popup_a2cc2fefbcb5fea98b982fd4d57a047a)
+        circle_marker_13bfb4267ebbfde36a4fd8876b77b27c.bindPopup(popup_40b76e8309efdfffe83bc726944f2258)
         ;
 
         
     
     
-            circle_marker_70fb43c9245b53709e6d7f2c21c3bdcc.bindTooltip(
+            circle_marker_13bfb4267ebbfde36a4fd8876b77b27c.bindTooltip(
                 `<div>
                      Exeter Phoenix
                  </div>`,
@@ -193,30 +397,30 @@
             );
         
     
-            var circle_marker_4d7027971ffce8ed9b9d6caa9abc686c = L.circleMarker(
+            var circle_marker_e23a58b32a41c07ee20f0beb3b0a3b4a = L.circleMarker(
                 [51.49975315117527, -0.1741612701422849],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Goethe-Institut", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_2347a97dcb908d3951a25eda443d375c = L.popup({
+        var popup_e3a1b973b7d4998024093f49f77db43c = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_52223f1d1e7a8d2a6d792063d3f307c4 = $(`<div id="html_52223f1d1e7a8d2a6d792063d3f307c4" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut</b><br>1 screenings</div>`)[0];
-                popup_2347a97dcb908d3951a25eda443d375c.setContent(html_52223f1d1e7a8d2a6d792063d3f307c4);
+                var html_d3cd7f10dafa2d51b0893dd6fe745d65 = $(`<div id="html_d3cd7f10dafa2d51b0893dd6fe745d65" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut</b><br>1 screenings</div>`)[0];
+                popup_e3a1b973b7d4998024093f49f77db43c.setContent(html_d3cd7f10dafa2d51b0893dd6fe745d65);
             
         
 
-        circle_marker_4d7027971ffce8ed9b9d6caa9abc686c.bindPopup(popup_2347a97dcb908d3951a25eda443d375c)
+        circle_marker_e23a58b32a41c07ee20f0beb3b0a3b4a.bindPopup(popup_e3a1b973b7d4998024093f49f77db43c)
         ;
 
         
     
     
-            circle_marker_4d7027971ffce8ed9b9d6caa9abc686c.bindTooltip(
+            circle_marker_e23a58b32a41c07ee20f0beb3b0a3b4a.bindTooltip(
                 `<div>
                      Goethe-Institut
                  </div>`,
@@ -226,30 +430,30 @@
             );
         
     
-            var circle_marker_3098e5346bcf9accfc24dcd620eac0df = L.circleMarker(
+            var circle_marker_e31ada78f0be2457896ef018d8946688 = L.circleMarker(
                 [51.49975315117527, -0.1741612701422849],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Goethe-Institut", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_ec65d69eba50ef3ef74f75f8a7d8b901 = L.popup({
+        var popup_e46f73fbd391b2f922b3fd85955bb32b = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_aea8c8d754e7887d6a3e1cb1b4dd2d0d = $(`<div id="html_aea8c8d754e7887d6a3e1cb1b4dd2d0d" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut </b><br>1 screenings</div>`)[0];
-                popup_ec65d69eba50ef3ef74f75f8a7d8b901.setContent(html_aea8c8d754e7887d6a3e1cb1b4dd2d0d);
+                var html_33f3c6b41f4b75e9ed21ac5fd74c597a = $(`<div id="html_33f3c6b41f4b75e9ed21ac5fd74c597a" style="width: 100.0%; height: 100.0%;"><b>Goethe-Institut </b><br>1 screenings</div>`)[0];
+                popup_e46f73fbd391b2f922b3fd85955bb32b.setContent(html_33f3c6b41f4b75e9ed21ac5fd74c597a);
             
         
 
-        circle_marker_3098e5346bcf9accfc24dcd620eac0df.bindPopup(popup_ec65d69eba50ef3ef74f75f8a7d8b901)
+        circle_marker_e31ada78f0be2457896ef018d8946688.bindPopup(popup_e46f73fbd391b2f922b3fd85955bb32b)
         ;
 
         
     
     
-            circle_marker_3098e5346bcf9accfc24dcd620eac0df.bindTooltip(
+            circle_marker_e31ada78f0be2457896ef018d8946688.bindTooltip(
                 `<div>
                      Goethe-Institut 
                  </div>`,
@@ -259,30 +463,30 @@
             );
         
     
-            var circle_marker_d3325cbaa180f13fd9f09bc4652f1d14 = L.circleMarker(
+            var circle_marker_fadcbe3be9a084338e62695e6b1d2b2e = L.circleMarker(
                 [53.45294702429217, -2.254747666388255],
                 {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.82842712474619, "screeningCount": 2, "stroke": true, "venueName": "Greater Manchester Arts Centre", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_4d9c752af965f4b4cfd7378fdea7e368 = L.popup({
+        var popup_316f721fce93c972d1ffe5df9a6dd56c = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_ee2eca92bf6559cfacdeefe624730fa0 = $(`<div id="html_ee2eca92bf6559cfacdeefe624730fa0" style="width: 100.0%; height: 100.0%;"><b>Greater Manchester Arts Centre</b><br>2 screenings</div>`)[0];
-                popup_4d9c752af965f4b4cfd7378fdea7e368.setContent(html_ee2eca92bf6559cfacdeefe624730fa0);
+                var html_bb84c942d79bc9f7f3caadda2d6aefe2 = $(`<div id="html_bb84c942d79bc9f7f3caadda2d6aefe2" style="width: 100.0%; height: 100.0%;"><b>Greater Manchester Arts Centre</b><br>2 screenings</div>`)[0];
+                popup_316f721fce93c972d1ffe5df9a6dd56c.setContent(html_bb84c942d79bc9f7f3caadda2d6aefe2);
             
         
 
-        circle_marker_d3325cbaa180f13fd9f09bc4652f1d14.bindPopup(popup_4d9c752af965f4b4cfd7378fdea7e368)
+        circle_marker_fadcbe3be9a084338e62695e6b1d2b2e.bindPopup(popup_316f721fce93c972d1ffe5df9a6dd56c)
         ;
 
         
     
     
-            circle_marker_d3325cbaa180f13fd9f09bc4652f1d14.bindTooltip(
+            circle_marker_fadcbe3be9a084338e62695e6b1d2b2e.bindTooltip(
                 `<div>
                      Greater Manchester Arts Centre
                  </div>`,
@@ -292,32 +496,230 @@
             );
         
     
-            var circle_marker_001e63c8560a023154abddca074b64ac = L.circleMarker(
-                [50.73617889921626, -3.535232633732758],
-                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "University of Exeter", "weight": 3}
-            ).addTo(map_c29f6f147884a45d4e71ab17e4067795);
+            var circle_marker_faab05ae62702817f48599757fea3e66 = L.circleMarker(
+                [53.812267839050854, -1.5693880479175693],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Hyde Park Picture House", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
         
     
-        var popup_7ca502637e7a05d205e3657dd30fe46e = L.popup({
+        var popup_bacf3bdc8d6ee59daa9bcad957432474 = L.popup({
   "maxWidth": 250,
 });
 
         
             
-                var html_98f4ee353544583fefbfb398e12e8cca = $(`<div id="html_98f4ee353544583fefbfb398e12e8cca" style="width: 100.0%; height: 100.0%;"><b>University of Exeter</b><br>1 screenings</div>`)[0];
-                popup_7ca502637e7a05d205e3657dd30fe46e.setContent(html_98f4ee353544583fefbfb398e12e8cca);
+                var html_ab4ae2c895bbec62697d564f9aa7c298 = $(`<div id="html_ab4ae2c895bbec62697d564f9aa7c298" style="width: 100.0%; height: 100.0%;"><b>Hyde Park Picture House</b><br>1 screenings</div>`)[0];
+                popup_bacf3bdc8d6ee59daa9bcad957432474.setContent(html_ab4ae2c895bbec62697d564f9aa7c298);
             
         
 
-        circle_marker_001e63c8560a023154abddca074b64ac.bindPopup(popup_7ca502637e7a05d205e3657dd30fe46e)
+        circle_marker_faab05ae62702817f48599757fea3e66.bindPopup(popup_bacf3bdc8d6ee59daa9bcad957432474)
         ;
 
         
     
     
-            circle_marker_001e63c8560a023154abddca074b64ac.bindTooltip(
+            circle_marker_faab05ae62702817f48599757fea3e66.bindTooltip(
+                `<div>
+                     Hyde Park Picture House
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83d103a342f5ef5381ffdba3953e5f89 = L.circleMarker(
+                [51.50619635410611, -0.13119842208851626],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Institute of Contemporary Arts", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_6e94f0f566e9173314e51f05337c1a0d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_724af8e716037deef6e22c2c5369c0f7 = $(`<div id="html_724af8e716037deef6e22c2c5369c0f7" style="width: 100.0%; height: 100.0%;"><b>Institute of Contemporary Arts</b><br>1 screenings</div>`)[0];
+                popup_6e94f0f566e9173314e51f05337c1a0d.setContent(html_724af8e716037deef6e22c2c5369c0f7);
+            
+        
+
+        circle_marker_83d103a342f5ef5381ffdba3953e5f89.bindPopup(popup_6e94f0f566e9173314e51f05337c1a0d)
+        ;
+
+        
+    
+    
+            circle_marker_83d103a342f5ef5381ffdba3953e5f89.bindTooltip(
+                `<div>
+                     Institute of Contemporary Arts
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee58330b8ec6d9383a5c47523b06e770 = L.circleMarker(
+                [53.806830659591235, -1.5564479883992899],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Leeds University Union", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_9909fc3f2d5aa0c265f7e22b97a2ab13 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_acc4b0320d768770d8cdcad854ebda10 = $(`<div id="html_acc4b0320d768770d8cdcad854ebda10" style="width: 100.0%; height: 100.0%;"><b>Leeds University Union</b><br>1 screenings</div>`)[0];
+                popup_9909fc3f2d5aa0c265f7e22b97a2ab13.setContent(html_acc4b0320d768770d8cdcad854ebda10);
+            
+        
+
+        circle_marker_ee58330b8ec6d9383a5c47523b06e770.bindPopup(popup_9909fc3f2d5aa0c265f7e22b97a2ab13)
+        ;
+
+        
+    
+    
+            circle_marker_ee58330b8ec6d9383a5c47523b06e770.bindTooltip(
+                `<div>
+                     Leeds University Union
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b218de0a48c3afd89fa150193f4edb7 = L.circleMarker(
+                [52.19999515529373, 0.11888825092392273],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Peterhouse College, Cambridge", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_121904d66a7755911ce3a37c39027075 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_994b1733de04bdd54f24a381f13664de = $(`<div id="html_994b1733de04bdd54f24a381f13664de" style="width: 100.0%; height: 100.0%;"><b>Peterhouse College, Cambridge</b><br>1 screenings</div>`)[0];
+                popup_121904d66a7755911ce3a37c39027075.setContent(html_994b1733de04bdd54f24a381f13664de);
+            
+        
+
+        circle_marker_1b218de0a48c3afd89fa150193f4edb7.bindPopup(popup_121904d66a7755911ce3a37c39027075)
+        ;
+
+        
+    
+    
+            circle_marker_1b218de0a48c3afd89fa150193f4edb7.bindTooltip(
+                `<div>
+                     Peterhouse College, Cambridge
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df285267e79d905744b18215d9c60572 = L.circleMarker(
+                [51.3203482681322, -2.2069455076280695],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "The Old Town Hall", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_ebc0b3859acffa4bcba91549f2e2e302 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_71da9e738eed16efb8b6ff67f9347ae8 = $(`<div id="html_71da9e738eed16efb8b6ff67f9347ae8" style="width: 100.0%; height: 100.0%;"><b>The Old Town Hall</b><br>1 screenings</div>`)[0];
+                popup_ebc0b3859acffa4bcba91549f2e2e302.setContent(html_71da9e738eed16efb8b6ff67f9347ae8);
+            
+        
+
+        circle_marker_df285267e79d905744b18215d9c60572.bindPopup(popup_ebc0b3859acffa4bcba91549f2e2e302)
+        ;
+
+        
+    
+    
+            circle_marker_df285267e79d905744b18215d9c60572.bindTooltip(
+                `<div>
+                     The Old Town Hall
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_304b48adfd7241660fb896f27eee0347 = L.circleMarker(
+                [50.73617889921626, -3.535232633732758],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "University of Exeter", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_0fe7c757adba4a3f620f482863ed160d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_da24f74a60ac3d7d5a281d7a93061d77 = $(`<div id="html_da24f74a60ac3d7d5a281d7a93061d77" style="width: 100.0%; height: 100.0%;"><b>University of Exeter</b><br>1 screenings</div>`)[0];
+                popup_0fe7c757adba4a3f620f482863ed160d.setContent(html_da24f74a60ac3d7d5a281d7a93061d77);
+            
+        
+
+        circle_marker_304b48adfd7241660fb896f27eee0347.bindPopup(popup_0fe7c757adba4a3f620f482863ed160d)
+        ;
+
+        
+    
+    
+            circle_marker_304b48adfd7241660fb896f27eee0347.bindTooltip(
                 `<div>
                      University of Exeter
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cfcb4f53c76be06684e2d5c1ce687e91 = L.circleMarker(
+                [51.451930961142054, -2.5980567220885153],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6.0, "screeningCount": 1, "stroke": true, "venueName": "Watershed", "weight": 3}
+            ).addTo(map_5e2bc49f90248c999c599ed55210db62);
+        
+    
+        var popup_4cc954cafa11e8e578ed415c8c948671 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_a06a45f5f17f9768dc68b1d52922e2dd = $(`<div id="html_a06a45f5f17f9768dc68b1d52922e2dd" style="width: 100.0%; height: 100.0%;"><b>Watershed</b><br>1 screenings</div>`)[0];
+                popup_4cc954cafa11e8e578ed415c8c948671.setContent(html_a06a45f5f17f9768dc68b1d52922e2dd);
+            
+        
+
+        circle_marker_cfcb4f53c76be06684e2d5c1ce687e91.bindPopup(popup_4cc954cafa11e8e578ed415c8c948671)
+        ;
+
+        
+    
+    
+            circle_marker_cfcb4f53c76be06684e2d5c1ce687e91.bindTooltip(
+                `<div>
+                     Watershed
                  </div>`,
                 {
   "sticky": true,

@@ -71,5 +71,53 @@
     "Director": [
       "Cecilia Bartolomé"
     ]
+  },
+  {
+    "Venue": "Peterhouse College, Cambridge",
+    "Location": "Cambridge",
+    "Film Title": "Carmen de Carabanchel",
+    "Director": [
+      "Cecilia Bartolomé"
+    ]
+  },
+  {
+    "Venue": "Watershed",
+    "Location": "Bristol",
+    "Film Title": "A Door to the Sky",
+    "Director": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Institute of Contemporary Arts",
+    "Location": "London",
+    "Film Title": "A Door to the Sky",
+    "Director": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "The Old Town Hall",
+    "Location": "Trowbridge",
+    "Film Title": "A Door to the Sky",
+    "Director": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Leeds University Union",
+    "Location": "Leeds",
+    "Film Title": "A Door to the Sky",
+    "Director": [
+      "Farida Benlyazid"
+    ]
+  },
+  {
+    "Venue": "Hyde Park Picture House",
+    "Location": "Leeds",
+    "Film Title": "A Door to the Sky",
+    "Director": [
+      "Farida Benlyazid"
+    ]
   }
 ]
