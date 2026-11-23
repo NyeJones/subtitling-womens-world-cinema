@@ -40,28 +40,14 @@
     "location": "London",
     "Latitude": 51.49975315117527,
     "Longitude": -0.1741612701422849,
-    "screening_count": 1,
+    "screening_count": 2,
     "film_ids": [
+      "film_0004",
       "film_0005"
     ],
     "film_titles": [
+      "Verführung: die grausame Frau",
       "Ich denke oft an Hawaii"
-    ],
-    "directors": [
-      "Elfi Mikesch"
-    ]
-  },
-  {
-    "Venue": "Goethe-Institut ",
-    "location": "London",
-    "Latitude": 51.49975315117527,
-    "Longitude": -0.1741612701422849,
-    "screening_count": 1,
-    "film_ids": [
-      "film_0004"
-    ],
-    "film_titles": [
-      "Verführung: die grausame Frau"
     ],
     "directors": [
       "Elfi Mikesch",
