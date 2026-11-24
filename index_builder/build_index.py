@@ -42,6 +42,12 @@ screens_df["Month"] = pd.to_datetime(
     errors="coerce"
 )
 
+screens_df = screens_df.sort_values(
+    by="Month",
+    ascending=True,
+    na_position="last"
+)
+
 films = {}
 
 for film_id, group in films_df.groupby("Film ID", sort=False):
@@ -68,13 +74,13 @@ for film_id, group in screens_df.groupby("Film ID"):
 
     for _, row in group.iterrows():
         screening = {
-            "screen_id": row["Screening ID"],
+            "month": row["Month"].strftime("%m/%Y")
+                     if pd.notna(row["Month"]) else "",            
             "venue": row["Venue"],
             "location": row["Location"],
-            "month": row["Month"].strftime("%m/%Y")
-                     if pd.notna(row["Month"]) else "",
             "screen_type": row["Screening Type"],
-            "organisation": row["Organisation"]
+            "organisation": row["Organisation"],
+            "screen_id": row["Screening ID"],            
         }
 
         films[film_id]["screenings"].append(screening)

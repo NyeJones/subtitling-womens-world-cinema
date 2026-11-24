@@ -108,11 +108,12 @@ def screenings_processed(screenings_data):
 
         html.append("<div class='screening-row'>")
 
-        screen_id = screening["screen_id"]
+        
+        month = screening["month"]
 
-        html.append("<div class='entry-block screening-item'>")
-        html.append("<span class='subheading'>Screening ID</span>")
-        html.append(f"<span class='item-name'>{esc(screen_id)}</span>")
+        html.append("<div class='entry-block entry-month'>")
+        html.append("<span class='subheading'>Month</span>")
+        html.append(f"<span class='item-name'>{esc(month)}</span>")
         html.append("</div>")
 
         venue = screening["venue"]
@@ -129,13 +130,6 @@ def screenings_processed(screenings_data):
         html.append(f"<span class='item-name'>{esc(location)}</span>")
         html.append("</div>")
 
-        month = screening["month"]
-
-        html.append("<div class='entry-block entry-month'>")
-        html.append("<span class='subheading'>Month</span>")
-        html.append(f"<span class='item-name'>{esc(month)}</span>")
-        html.append("</div>")
-
         screen_type = screening["screen_type"]
 
         html.append("<div class='entry-block entry-type'>")
@@ -148,6 +142,13 @@ def screenings_processed(screenings_data):
         html.append("<div class='entry-block entry-type'>")
         html.append("<span class='subheading'>Organisation</span>")
         html.append(f"<span class='item-name'>{esc(organisation)}</span>")
+        html.append("</div>")
+
+        screen_id = screening["screen_id"]
+
+        html.append("<div class='entry-block screening-item'>")
+        html.append("<span class='subheading'>Screening ID</span>")
+        html.append(f"<span class='item-name'>{esc(screen_id)}</span>")
         html.append("</div>")
 
         html.append("</div>")
